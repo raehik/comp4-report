@@ -1,53 +1,44 @@
 \section{Analysis}
 
-\subsection{Testing}
-
-\makeatletter
-
-\meaning\markboth
-
-\meaning\leftmark
-
-\meaning\@leftmark
-
-\meaning\rightmark
-
-\meaning\@rightmark
-
-\meaning\sectionmark
-
-\thesection
-
-\makeatother
-
-
-\subsection{Background information}
-
-Amartya is a Sixth Form student at Reading School taking 3 A-levels. Classes
-often don't set firm homework or deadlines, as teachers expect students to make
-time for studying at home themselves depending on how confident they feel with
-the material.
-
-
 \subsection{Identification of problem}
 
-A degree of organisation can help immensely with A-level studies, especially
-when we have to find work to do ourselves. Amartya has told me that he has
-issues keeping track of work and to-dos, and mentioned that his current methods
-for organising projects and appointments are messy.
+Amartya is a Sixth Form student at Reading School taking 4 A-levels. Year 13 is
+an especially important year for students aiming at university: pupils' results
+greatly influence their options following compulsory education. Classes often
+don't set firm homework or deadlines, as teachers expect students to make
+suitable time for studying at home themselves depending on how confident they
+feel with the material.
 
-My project aims to improve Amartya's organisation by making it easier to keep
-track of events, appointments and to-dos at various levels of detail - monthly,
-daily, hourly.
+The support given by the school on organising or prioritising is very limited,
+except about revision techniques during examination season. A degree of
+organisation can help immensely with A-level studies, especially when we have to
+find work to do ourselves. Amartya has told me that he has trouble keeping track
+of work and to-dos, and explained that his current methods for organising
+projects and appointments are messy.
+
+My project aims to improve Amartya's organisation skills by \textbf{making it
+easier} to keep track of events, appointments and to-dos at various levels of
+detail including monthly, daily, and hourly, and by reminding the user about
+chosen events.
 
 
 \subsection{Current system}
 
-Amartya uses post-it notes for both short-term and long-term things (?) (e.g.
-both short reminders and deadlines). It can be hard to remember where certain
-post-its are, or accidentally place one post-it over another and forget about
-the one underneath. Using only post-its makes it a hard-to-use and unorganised
-system.
+Amartya uses post-it notes for both short-term tasks (such as remembering to
+feed the rabbits before night) and long-term things (e.g. deadlines or project
+milestones). There is always the concern that a post-it could get buried or fall
+from the wall, meaning a task could be completely forgotten about. Also, post-it
+notes don't provide much space to write on, so it isn't always possible to
+provide extra detail on a longer task; or you have to use multiple notes, which
+requires that they all stay together.
+
+Post-it notes lose adhesiveness over time, so the system would be a pain to
+maintain. This means it \textit{discourages long-term notes} because using notes
+for more than 2-3 weeks makes it more time-consuming to affix the old ones.
+
+It can be hard to remember where certain post-its are, or accidentally place one
+post-it over another and forget about the one underneath. Overall, using only
+post-its makes it a hard-to-use and unorganised system.
 
 
 \subsection{End users}
@@ -104,12 +95,30 @@ Numbered!
 \subsection{Potential solutions}
 
 \subsubsection{Physical calendar and printouts}
+
+Amartya could print or buy calendars and use them to track appointments and
+events. This is a common approach to organisation. He could also make weekly
+printouts to use more detail or add more events.
+
+Physical calendars are simple, intuitive and powerful. They cannot be used as a
+'to-do' tool as effectively as post-it notes, however, since there isn't always
+much space for each day. It could lead to a messy desk if the person kept
+previous monthly/weekly sheets on hand, and certain events might have to be
+transferred between weeks manually if they are ongoing.
+
+
 \subsubsection{Pre-existing digital solution}
+
+There are a number of existing digital calendars available for varying
+platforms. A stand-out contender is Google Calendar
+
+
 \subsubsection{Desktop application}
 
 \begin{itemize}
   \item + The software could be used offline.
-  \item + Local operations are be faster than querying data on a remote server.
+  \item + Data operations are almost always faster than querying data on a
+          remote server.
   \item + I wouldn't have to pay for or administrate a server.
   \item - I would have to compile the software for both Windows and Linux.
 \end{itemize}
@@ -118,9 +127,11 @@ Numbered!
 \subsubsection{Web application}
 
 \begin{itemize}
-  \item + Immediately compatible with all operating systems
-  \item + Simple mobile support
-  \item - May be harder to perform some tasks, e.g. printing, event alerts
+  \item + It would be easy to make it compatible with all major operating
+          systems.
+  \item + It would be simple to implement mobile support.
+  \item - Some tasks may be harder to perform -- e.g. printing, event alerts
+  \item - I would be competing with many other web-based calendars.
 \end{itemize}
 
 
