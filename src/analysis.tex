@@ -2,7 +2,7 @@
 
 \subsection{Identification of problem}
 
-\todo{Do I need this paragraph?}
+\note{I need this b/c it gives details about my client}
 Amartya is a Sixth Form student at Reading School taking 4 A-levels.
 Year 13 is an especially important year for students aiming at university:
 pupils' results greatly influence their options following compulsory
@@ -27,19 +27,30 @@ reminding the user about chosen events.
 
 Amartya uses post-it notes for both short-term tasks (such as remembering to
 feed the rabbits before night) and long-term things (e.g. deadlines or project
-milestones). There is always the concern that a post-it could get buried or fall
-from the wall, meaning a task could be completely forgotten about. Also, post-it
-notes don't provide much space to write on, so it isn't always possible to
-provide extra detail on a longer task; or you have to use multiple notes, which
-requires that they all stay together.
+milestones). This simple system works well for short to-do lists or people with
+messy desks, since the notes won't get lost under paper. I identified a number
+of problems, however:
 
-Post-it notes lose adhesiveness over time, so the system would be a pain to
-maintain. This means it \textit{discourages long-term notes} because using notes
-for more than 2-3 weeks makes it more time-consuming to affix the old ones.
+\begin{itemize}
 
-It can be hard to remember where certain post-its are, or accidentally place one
-post-it over another and forget about the one underneath. Overall, using only
-post-its makes it a hard-to-use and unorganised system.
+  \item There is always the concern that a post-it could get buried or fall
+        from the wall, meaning a task could be completely forgotten about.
+        Also, post-it notes don't provide much space to write on, so it isn't
+        always possible to provide extra detail on a longer task; or you have to
+        use multiple notes, which requires that they all stay together.
+  \item Post-it notes lose adhesiveness over time, so the system would be a pain
+        to maintain. This means it \textit{discourages long-term notes} because
+        using notes for more than 2-3 weeks makes it more time-consuming to
+        re-affix the old ones.
+  \item It can be hard to remember where certain post-its are, or you could
+        accidentally place one post-it over another and forget about the one
+        underneath.
+
+\end{itemize}
+
+Overall, using only post-its forms a hard-to-use and rudimentary system. My new
+system plans to replace the post-it system by providing calendar functions,
+to-do creation, and timeline views with physical printouts.
 
 
 \subsection{End users}
@@ -55,25 +66,31 @@ time.
 \begin{itemize}
   \item The software must store data in a database reliably, so data
         corruption does not occur.
-  \item The software's menus should be straightforward and easy to move
-        through.
-  \item The software should have an option to make alerts for certain
-        events.
-  \item The software must be able to show a summary of events in a year
-        calendar view, a month view, and a day view.
-  \item The software could have 'family sharing', so that authorised
-        users can view another person's calendar.
   \item The software must allow searching for events using keywords.
   \item The software must allow searching for events within a range of
         days.
+  \item The software must be able to show a summary of events in a year
+        calendar view, a month view, and a day view.
+  \item The software must have an option to create desktop alerts for selected
+        events.
+  \item The software's menus should be straightforward and easy to move
+        through.
+  \item The software could have 'family sharing', so that authorised
+        users can view another person's calendar.
   \item The software could make a printable copy of the different views.
 \end{itemize}
 
 
 \subsection{Data sources and destinations}
-\lipsum
+
+TODO
+
+
 \subsection{Data volumes}
-\lipsum
+
+TODO
+
+
 \subsection{Analysis data dictionary}
 
 \starttable{| l | l | l |}
@@ -83,11 +100,23 @@ time.
 
 \subsection{Data flow diagrams}
 \subsubsection{Current system}
+
+\fatal{TODO: work out whether I want subsubsections numbered}
+
+TODO? Should be easy
+
+
 \subsubsection{Planned system}
 \subsection{Entity-relationship model}
-\lipsum
+
+TODO
+
+
 \subsection{Object analysis diagram}
-\lipsum
+
+TODO
+
+
 \subsection{Objectives}
 
 Numbered!
@@ -95,23 +124,19 @@ Numbered!
 
 \subsection{Potential solutions}
 
-\subsubsection{Physical calendar and printouts}
-
-Amartya could print or buy calendars and use them to track appointments and
-events. This is a common approach to organisation. He could also make weekly
-printouts to use more detail or add more events.
-
-Physical calendars are simple, intuitive and powerful. They cannot be used as a
-'to-do' tool as effectively as post-it notes, however, since there isn't always
-much space for each day. It could lead to a messy desk if the person kept
-previous monthly/weekly sheets on hand, and certain events might have to be
-transferred between weeks manually if they are ongoing.
+\note{I am NOT ALLOWED physical systems here!!! They have to be computer-based
+solutions.}
 
 
 \subsubsection{Pre-existing digital solution}
 
 There are a number of existing digital calendars available for varying
 platforms. A stand-out contender is Google Calendar
+
+
+\subsubsection{Excel spreadsheet}
+
+TODO
 
 
 \subsubsection{Desktop application}
@@ -124,6 +149,8 @@ platforms. A stand-out contender is Google Calendar
   \item - I would have to compile the software for both Windows and Linux.
 \end{itemize}
 
+\todo{More pluses!}
+
 
 \subsubsection{Web application}
 
@@ -131,13 +158,16 @@ platforms. A stand-out contender is Google Calendar
   \item + It would be easy to make it compatible with all major operating
           systems.
   \item + It would be simple to implement mobile support.
+  \item + Graphical interfaces are simple to create.
   \item - Some tasks may be harder to perform -- e.g. printing, event alerts
   \item - I would be competing with many other web-based calendars.
+  \item - I would need to spend time learning how to use the various tools in
+          the web development stack.
 \end{itemize}
 
 
 \subsection{Chosen solution}
 
-+ explain how alternative solutions could have been done
+\todo{+ explain how alternative solutions could have been done}
 
-\subsection{Etc.}
+\todo{End of analysis? Check}
