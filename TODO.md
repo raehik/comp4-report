@@ -3,3 +3,5 @@
   Hussain.
 * Get my candidate number!
 * Check about numbering (if neutral, I want it)
+
+* Essentially this: https://en.wikipedia.org/wiki/Electronic_organizer
