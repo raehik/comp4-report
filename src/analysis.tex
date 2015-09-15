@@ -1,6 +1,6 @@
 \section{Analysis}
 
-\subsection{Identification of problem}
+\subsection{Background \& identification of problem}
 
 \note{I need this b/c it gives details about my client}
 Amartya is a Sixth Form student at Reading School taking 4 A-levels.
@@ -109,7 +109,20 @@ TODO? Should be easy
 \subsubsection{Planned system}
 \subsection{Entity-relationship model}
 
-TODO
+\begin{tikzpicture}[node distance=7em]
+\node[entity] (person) {Person};
+\node[attribute] (pid) [left of=person] {\key{ID}} edge (person);
+\node[attribute] (name) [above left of=person] {Name} edge (person);
+\node[multi attribute] (phone) [above of=person] {Phone} edge (person);
+\node[attribute] (address) [above right of=person] {Address} edge (person);
+\node[attribute] (street) [above right of=address] {Street} edge (address);
+\node[attribute] (city) [right of=address] {City} edge (address);
+\node[derived attribute] (age) [right of=person] {Age} edge (person);
+\node[relationship] (uses) [below of=person] {Uses} edge (person);
+\node[entity] (tool) [below of=uses] {Tool} edge[total] (uses);
+\node[attribute] (tid) [left of=tool] {\key{ID}} edge (tool);
+\node[attribute] (tname) [right of =tool] {Name} edge (tool);
+\end{tikzpicture}
 
 
 \subsection{Object analysis diagram}
@@ -143,6 +156,11 @@ platforms. A stand-out contender is Google Calendar
 
 
 \subsubsection{Excel spreadsheet}
+
+Excel spreadsheets are a simple way to record data in a structured way so that
+it can easily be understood. As well, macros give spreadsheets much more
+flexibility, since complex functions can be created to speed up certain
+operations.
 
 TODO
 
