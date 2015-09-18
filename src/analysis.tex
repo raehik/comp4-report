@@ -93,15 +93,15 @@ TODO
 
 \subsection{Analysis data dictionary}
 
-\starttable{| l | l | l |}
-  \R \thead{Data} & \thead{Data type} & \thead{Description} \\
-  \R Test & Example & Etc.
+\starttable{|l|l|l|}
+  \hline
+  \thead{Data} & \thead{Data type} & \thead{Description} \\
+  \hline
+  Test & Example & Etc. \\
 \stoptable
 
 \subsection{Data flow diagrams}
 \subsubsection{Current system}
-
-\fatal{TODO: work out whether I want subsubsections numbered}
 
 TODO? Should be easy
 
@@ -145,10 +145,26 @@ e.g. The user must be able to:
 
 \subsection{Potential solutions}
 
+\newcommand{\solreq}[1]{\thead{#1}&}
+\newcommand{\solreqlast}[1]{\thead{#1} \\}
+\newcommand{\solname}[1]{\thead{#1}&}
+\newcommand{\solY}{\multicolumn{1}{c|}{Yes}}
+\newcommand{\solN}{\multicolumn{1}{c|}{No}}
+
 \note{I am NOT ALLOWED physical systems here!!! They have to be computer-based
 solutions.}
 
-%\fxnote[inline,nomargin]{Compare against \href{https://en.wikipedia.org/wiki/Comparison_of_project_management_software}}
+\starttable{*{4}{|p{2cm}}|}
+  \hl
+  \thead{Possible solutions} &
+    % requirements
+    \solreq{Interview}
+    \solreq{Amartya}
+    \solreqlast{and put requirements here}
+  \hl
+  \solname{Solution 1}
+  \solY & \solN & \solY \\
+\stoptable
 
 
 \subsubsection{Pre-existing digital solution}
