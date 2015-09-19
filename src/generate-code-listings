@@ -102,7 +102,7 @@ add_code_as_cat() {
     # a much larger file and means the script has to be run again for every
     # change made to the codebase.
     gen_append "\\subsection{\\texttt{${1##*/}}}"
-    gen_append "\\begin{minted}[breaklines]{$src_lang}"
+    gen_append "\\begin{minted}[breaklines,linenos]{$src_lang}"
     gen_append "$(cat "$1")"
     gen_append "\\end{minted}$nl"
 }
