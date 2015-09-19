@@ -63,10 +63,10 @@ shift $((OPTIND-1))
 
 # }}}
 
-
-
 outfile="generated-code-listings.tex"
 src_lang="cpp"
+src_ext="cpp"
+inc_ext="hpp"
 
 root_path="../../comp4-project"
 src_path="src"
@@ -80,11 +80,35 @@ gen_append() {
 
 process_files() {
     while IFS=$'\n' read srcfile; do
-        gen_append "\\subsection{\\texttt{${srcfile##*/}}}"
-        gen_append "\\begin{minted}[breaklines]{$src_lang}"
-        gen_append "$(cat "$srcfile")"
-        gen_append "\\end{minted}$nl"
+        if [[ -z "$srcfile" ]]; then
+            log "srcfile was empty, there were probably no files found"
+            continue
+        fi
+        add_code_as_file "$srcfile"
     done <<< "$1"
+}
+
+add_code_as_file() {
+    # This inserts an \inputminted command for the file passed. That means so
+    # long as you don't add or remove any files (i.e. only change them), you can
+    # keep using the same generated file without re-generating it.
+    gen_append "\\subsection{\\texttt{${1##*/}}}"
+    gen_append "\\inputminted[breaklines,linenos]{$src_lang}{$(realpath "$1")}$nl"
+}
+
+add_code_as_cat() {
+    # This inserts the full contents of the file passed at the time of
+    # generation into the generated file. A bit more trustworthy, but generates
+    # a much larger file and means the script has to be run again for every
+    # change made to the codebase.
+    gen_append "\\subsection{\\texttt{${1##*/}}}"
+    gen_append "\\begin{minted}[breaklines]{$src_lang}"
+    gen_append "$(cat "$1")"
+    gen_append "\\end{minted}$nl"
+}
+
+find_in_root_at() {
+    find "$root_path/$1" -type f -name "*.$src_ext" -o -name "*.$inc_ext" | sort
 }
 
 # cd to directory of script (b/c we use relative paths)
@@ -95,10 +119,8 @@ if [[ -f "$outfile" ]]; then
     rm "$outfile"
 fi
 
-
-
 gen_append "\\section{Source files}$nl"
-process_files "$(find "$root_path/$src_path" -type f | sort)"
+process_files "$(find_in_root_at $src_path)"
 
 gen_append "\\section{Header files}$nl"
-process_files "$(find "$root_path/$inc_path" -type f | sort)"
+process_files "$(find_in_root_at $inc_path)"
