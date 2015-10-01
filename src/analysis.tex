@@ -84,12 +84,35 @@ time.
 
 \subsection{Data sources and destinations}
 
-TODO
+In the current system the user who is organising themselves makes post-it notes.
+There is also the option for someone else to write a note and leave it on their
+desk. The new system will stay the same in that the only source is the user
+owning the calendar (or other people with access to the computer with the
+calendar on).
+
+The entered to-dos or appointments will be stored in a database and will be able
+to be viewed on the calendar views. Any events with notifications enabled will
+store extra information.
 
 
 \subsection{Data volumes}
 
-TODO
+Only textual data will be stored: times, descriptions etc. are all
+non-binary. Data for a single calendar such as appointments and to-dos will be
+stored in a single database.
+
+Each calendar is intended to be accessed and edited by a single user. If a
+'family sharing' feature is implemented, other users would be able to view
+another user's calendar (but not edit it).
+
+The system can have any number of calendars available. Only one calendar can be
+loaded at any time and each calendar is stored in a separate database. I am
+making this system expecting that it will be used by a family -- therefore at
+most there will be 10 users using the system concurrently.
+
+Users may access the system up to a few times every hour. The software may be
+left running in the background while a computer is on for notifications. Thus
+the software should not take resources while the user is not doing operations.
 
 
 \subsection{Analysis data dictionary}
@@ -98,7 +121,13 @@ TODO
   \hline
   \thead{Data} & \thead{Data type} & \thead{Description} \\
   \hline
-  Test & Example & Etc. \\
+  Event & Class & A timed or untimed event/appointment/to-do. \\
+  Event title & Example & Etc. \\
+  Event location & Example & Etc. \\
+  Event description & Example & Etc. \\
+  Notification & Class & A class to hold a notification. \\
+  Notification time & Date/time & Date/time to show the notification \\
+  Notification description & String & Text to show on-screen when notification is active. \\
 \stoptable
 
 \subsection{Data flow diagrams}
