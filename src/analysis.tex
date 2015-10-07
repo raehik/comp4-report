@@ -145,7 +145,7 @@ the software should not take resources while the user is not doing operations.
 }
 
 \addfigure
-    {dfd-orig-paper}
+    {dfd-orig}
     {DFD of the current post-it note system}
     {fig:dfd-orig}
 
@@ -153,32 +153,22 @@ the software should not take resources while the user is not doing operations.
 \subsubsection{Planned system}
 
 \addfigure
-    {dfd-orig-paper}
+    {dfd-orig}
     {DFD of the proposed digital system}
     {fig:dfd-new}
 
 
 \subsection{Entity-relationship model}
 
-\begin{tikzpicture}[node distance=7em]
-\node[entity] (person) {Person};
-\node[attribute] (pid) [left of=person] {\key{ID}} edge (person);
-\node[attribute] (name) [above left of=person] {Name} edge (person);
-\node[multi attribute] (phone) [above of=person] {Phone} edge (person);
-\node[attribute] (address) [above right of=person] {Address} edge (person);
-\node[attribute] (street) [above right of=address] {Street} edge (address);
-\node[attribute] (city) [right of=address] {City} edge (address);
-\node[derived attribute] (age) [right of=person] {Age} edge (person);
-\node[relationship] (uses) [below of=person] {Uses} edge (person);
-\node[entity] (tool) [below of=uses] {Tool} edge[total] (uses);
-\node[attribute] (tid) [left of=tool] {\key{ID}} edge (tool);
-\node[attribute] (tname) [right of =tool] {Name} edge (tool);
-\end{tikzpicture}
+\addfigure
+    {dfd-orig}
+    {Entity-relationship model for the proposed system}
+    {fig:er-model-new}
 
 
 \subsection{Object analysis diagram}
 
-TODO
+What the hell is this? Big TODO.
 
 
 \subsection{Objectives}
