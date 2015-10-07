@@ -117,26 +117,47 @@ the software should not take resources while the user is not doing operations.
 
 \subsection{Analysis data dictionary}
 
-\starttable{|l|l|l|}
+\newcommand{\dictline}[1]{#1 \\ \hline}
+
+\starttable{|l|l|p{6cm}|}
   \hline
   \thead{Data} & \thead{Data type} & \thead{Description} \\
   \hline
-  Event & Class & A timed or untimed event/appointment/to-do. \\
-  Event title & Example & Etc. \\
-  Event location & Example & Etc. \\
-  Event description & Example & Etc. \\
-  Notification & Class & A class to hold a notification. \\
-  Notification time & Date/time & Date/time to show the notification \\
-  Notification description & String & Text to show on-screen when notification is active. \\
+  \dictline{Event & Class & A timed or untimed event, appointment, or to-do}
+  \dictline{Event title & Example & Etc.}
+  \dictline{Event location & Example & Etc.}
+  \dictline{Event description & Example & Etc.}
+  \dictline{Notification & Class & A class to hold a notification.}
+  \dictline{Notification time & Date/time & Date/time to show the notification}
+  \dictline{Notification description & String & Text to show on-screen when notification is active}
 \stoptable
 
 \subsection{Data flow diagrams}
 \subsubsection{Current system}
 
-TODO? Should be easy
+\newcommand{\addfigure}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{#1}
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+}
+
+\addfigure
+    {dfd-orig-paper}
+    {DFD of the current post-it note system}
+    {fig:dfd-orig}
 
 
 \subsubsection{Planned system}
+
+\addfigure
+    {dfd-orig-paper}
+    {DFD of the proposed digital system}
+    {fig:dfd-new}
+
+
 \subsection{Entity-relationship model}
 
 \begin{tikzpicture}[node distance=7em]
