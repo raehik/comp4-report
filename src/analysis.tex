@@ -112,7 +112,7 @@ most there will be 10 users using the system concurrently.
 
 Users may access the system up to a few times every hour. The software may be
 left running in the background while a computer is on for notifications. Thus
-the software should not take resources while the user is not doing operations.
+the software should not be resource-intensive while the user is not using it.
 
 
 \subsection{Analysis data dictionary}
@@ -121,15 +121,19 @@ the software should not take resources while the user is not doing operations.
 
 \starttable{|l|l|p{6cm}|}
   \hline
-  \thead{Data} & \thead{Data type} & \thead{Description} \\
+  \thead{Data piece} & \thead{Data type} & \thead{Description} \\
   \hline
-  \dictline{Event & Class & A timed or untimed event, appointment, or to-do}
-  \dictline{Event title & Example & Etc.}
-  \dictline{Event location & Example & Etc.}
-  \dictline{Event description & Example & Etc.}
+  \dictline{Appointment & Class & A timed or untimed appointment/event.}
+  \dictline{Appointment title & String & What the appointment is for.}
+  \dictline{Appointment location & String & (optional) An optional location for the appointment (e.g. home, work).}
+  \dictline{Appointment description & String & (optional) Extra details for the appointment.}
+  \dictline{To-do & Class & An untimed to-do note.}
+  \dictline{To-do text & Class & The to-do note contents.}
+  \dictline{To-do ended? & Boolean & Whether the to-do has ended (i.e. been completed or abandoned).}
+  \dictline{To-do end date & Date/time & The date/time a to-do was ended.}
   \dictline{Notification & Class & A class to hold a notification.}
-  \dictline{Notification time & Date/time & Date/time to show the notification}
-  \dictline{Notification description & String & Text to show on-screen when notification is active}
+  \dictline{Notification time & Date/time & Date/time to show the notification at.}
+  \dictline{Notification description & String & Text to show on-screen when notification is active.}
 \stoptable
 
 \subsection{Data flow diagrams}
