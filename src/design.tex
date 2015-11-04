@@ -1,17 +1,49 @@
 \section{Design}
 \subsection{System overview}
+
+\begin{itemize}
+    \item \textbf{DBHelper}: An 'interface'/base class which is inherited by
+        specific database helpers (e.g. SQLiteHelper).
+    \item \textbf{SQLiteHelper}: Handles connections with a SQLite database and
+        inserting/selecting data.
+    \item \textbf{DataHandler}: Handles retrieving data and updating the
+        database. Uses a class derived from DBHelper to interface with the
+        actual database.
+\end{itemize}
+
+
+\subsubsection{DataHandler}
+
+Reasoning for this is that it means I can:
+
+\begin{itemize}
+    \item Move between databases without changing unrelated code
+    \item Easily implement caching if it turns out to be required
+\end{itemize}
+
+Separating the generic 'data movement interface' from the specific database
+protocol used means that code which handles data does \textit{not} need to know
+about the database being used.
+
+\begin{itemize}
+    \item \texttt{insert_appts(vector<Appointment>)}
+    \item \texttt{select_appts(string title, striang description)}
+\end{itemize}
+
+
 \subsection{System components}
 \subsection{IPSO table}
 
 \todo{Um}
 
+\newcommand{\ipsol}[1]{#1 \\}
+
 \starttable{| l | l |}
   \hline
   \thead{Inputs} & \thead{Processes} \\
   \hline
-  An input & A process \\
-  \hline
-  & Another process \\
+  \ipsol{An input & A process}
+  \ipsol{& Another process \\
   \hline
   \thead{Outputs} & \thead{Storage} \\
   \hline
