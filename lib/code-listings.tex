@@ -1,0 +1,78 @@
+%% Document class {{{
+
+% most generic document class: useful for anything from a journal
+% article to a report
+%\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,10pt]{article}
+
+%% }}}
+
+%% Packages {{{
+
+% decrease margins a bit (so more page space used)
+\usepackage[margin=1in]{geometry}
+
+% better kerning etc. for accented characters and so on
+% see here: http://tex.stackexchange.com/questions/664
+\usepackage[T1]{fontenc}
+
+% allow more than just ASCII input in files (e.g. ä rather than \"a)
+\usepackage[utf8]{inputenc}
+
+% allow using CJK characters with \begin{CJK}{UTF8}{font}
+% (suggest you leave it commented out unless required)
+%\usepackage{CJKutf8}
+
+% use Latin Modern fonts -- may be typeset with higher quality or sth.
+% see here: http://tex.stackexchange.com/questions/1390
+% (there is a chance that my TeX distribution uses Latin Modern by
+% default, but it's still a safe bet to specify it)
+\usepackage{lmodern}
+
+% Specify font style.
+% Options:
+%   \rmdefault : Serif (Roman)
+%   \sfdefault : Sans-serif
+%   \ttdefault : Monospace (typewriter)
+%
+% Default is serif.
+%\renewcommand*{\familydefault}{\rmdefault}
+
+% use only 1 space at end of sentence, instead of default 2
+% I keep it off, but useful to know command.
+%\frenchspacing
+
+% vertical spacing between paragraphs, but keep the default 15pt indent
+% Again, sticking with the default no vertical spacing for now.
+%\usepackage{parskip}
+%\setlength{\parindent}{15pt}
+
+% remove all chapter/section/etc. numbering
+%\setcounter{secnumdepth}{0}
+
+% lorem ipsum for placeholders & formatting testing
+\usepackage{lipsum}
+
+% clickable TOC
+\usepackage[hidelinks]{hyperref}
+
+% syntax highlighting used Pygments
+\usepackage[outputdir=build]{minted}
+
+% images
+\usepackage{graphicx}
+\graphicspath{ {img/} }
+\usepackage{float}
+
+% don't restrict underscores (imperative for any code)
+%\usepackage{underscore}
+
+% grave chars (`) = actual grave chars, not single quotes
+% also makes quotes straight instead of curly (i.e. keybooard ones, not special
+% ones)
+\usepackage{upquote}
+
+% much better typewriter font
+\usepackage{beramono}
+
+%% }}}
