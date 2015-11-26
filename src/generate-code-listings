@@ -66,13 +66,15 @@ shift $((OPTIND-1))
 outfile="generated-code-listings.tex"
 src_lang="cpp"
 src_ext="cpp"
-inc_ext="hpp"
+inc_ext="h"
 
 root_path="$HOME/school/cs/comp4/comp4-project/digital-organiser"
 src_path="src"
 inc_path="include"
 
 nl=$'\n'
+
+minted_opts="breaklines,linenos,fontsize=\\normalsize"
 
 gen_append() {
     echo "$1" >> "$outfile"
@@ -93,7 +95,7 @@ add_code_as_file() {
     # long as you don't add or remove any files (i.e. only change them), you can
     # keep using the same generated file without re-generating it.
     gen_append "\\subsection{\\texttt{${1##*/}}}"
-    gen_append "\\inputminted[breaklines,linenos]{$src_lang}{$(realpath "$1")}$nl"
+    gen_append "\\inputminted[$minted_opts]{$src_lang}{$(realpath "$1")}$nl"
 }
 
 add_code_as_cat() {
@@ -102,7 +104,7 @@ add_code_as_cat() {
     # a much larger file and means the script has to be run again for every
     # change made to the codebase.
     gen_append "\\subsection{\\texttt{${1##*/}}}"
-    gen_append "\\begin{minted}[breaklines,linenos]{$src_lang}"
+    gen_append "\\begin{minted}[$minted_opts]{$src_lang}"
     gen_append "$(cat "$1")"
     gen_append "\\end{minted}$nl"
 }
@@ -121,6 +123,9 @@ fi
 
 gen_append "\\section{Source files}$nl"
 process_files "$(find_in_root_at $src_path)"
+
+# new page for header section
+gen_append "\\clearpage$nl"
 
 gen_append "\\section{Header files}$nl"
 process_files "$(find_in_root_at $inc_path)"
