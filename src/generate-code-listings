@@ -74,7 +74,8 @@ inc_path="include"
 
 nl=$'\n'
 
-minted_opts="breaklines,linenos,fontsize=\\normalsize"
+font_size="\\footnotesize"
+minted_opts="breaklines,linenos,fontsize=$font_size"
 
 gen_append() {
     echo "$1" >> "$outfile"
@@ -120,6 +121,9 @@ if [[ -f "$outfile" ]]; then
     log "removing old file"
     rm "$outfile"
 fi
+
+gen_append "% make minted line numbers a bit bigger"
+gen_append "\\renewcommand{\\theFancyVerbLine}{$font_size\\arabic{FancyVerbLine}}"
 
 gen_append "\\section{Source files}$nl"
 process_files "$(find_in_root_at $src_path)"
