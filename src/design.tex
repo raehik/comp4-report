@@ -1,14 +1,49 @@
 \section{Design}
 \subsection{System overview}
 
+I am approaching the design of the system modularly i.e. as much of the system
+as possible should be 'pluggable'. Where required, classes and modules should be
+required to inherit from a base class or module, or be forced to expose certain
+functions, as a sort of API. For example, the class for handling data storage
+and retrieval could use any object of a 'database helper' type (an interface in
+Java), and it would expect the class to know how to handle different functions,
+and what return types are required. In this way, a handler for a different
+database could be written with minimal code duplication, which would be useful
+if I need to change database systems (e.g. to MySQL).
+
+\subsubsection{Main classes}
+
+\newcommand{\classitem}[1]{\item \textbf{#1}}
+
+The main logic classes follow:
+
 \begin{itemize}
-    \item \textbf{DBHelper}: An 'interface'/base class which is inherited by
-        specific database helpers (e.g. SQLiteHelper).
-    \item \textbf{SQLiteHelper}: Handles connections with a SQLite database and
+    \classitem{DBHelper}: Interface for classes which interface with a specific
+        database system (e.g. SQLite, MySQL).
+    \classitem{SQLiteHelper}: Handles connections with a SQLite database and
         inserting/selecting data.
-    \item \textbf{DataHandler}: Handles retrieving data and updating the
+    \classitem{DataHandler}: Handles retrieving data and updating the
         database. Uses a class derived from DBHelper to interface with the
         actual database.
+    \classitem{PDFExporter}
+\end{itemize}
+
+\todo{Shit, there needs to be a bit more logic in this. Probably 5 classes at
+least. I know DataHandler and DBHelper children do a *lot* of heavy lifting, but
+too much is just GUI code.}
+
+\begin{itemize}
+    \classitem{GuiMainWindow}: The 'master' GUI window, the main one that the
+        user interacts with.
+    \classitem{DataEntrySubmitWindow}: Interface for simple dialog windows
+        which take user input and use it somehow (e.g. add to a database or make
+        a database search)
+    \classitem{CalendarViewWindow}: Interface for a calendar view in a separate
+        window. Should have an option to print the view.
+    \classitem{TodoWidget}: A to-do widget for the main window.
+    \classitem{RecentApptsWidget}: A recent appointments widget for the main
+    window.
+    \classitem{MonthViewWidget}:
 \end{itemize}
 
 
