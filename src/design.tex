@@ -19,12 +19,11 @@ The main logic classes follow:
 
 \begin{itemize}
     \classitem{DBHelper}: Interface for classes which interface with a specific
-        database system (e.g. SQLite, MySQL).
-    \classitem{SQLiteHelper}: Handles connections with a SQLite database and
-        inserting/selecting data.
-    \classitem{DataHandler}: Handles retrieving data and updating the
-        database. Uses a class derived from DBHelper to interface with the
-        actual database.
+    database system (e.g. SQLite, MySQL).
+    \classitem{SQLiteHelper}: DBHelper for manipulating a SQLite database
+    (inserting/selecting data, executing commands)and inserting/selecting data.
+    \classitem{DataHandler}: Handles retrieving data and updating the database.
+    Uses a class derived from DBHelper to interface with the actual database.
     \classitem{PDFExporter}
 \end{itemize}
 
