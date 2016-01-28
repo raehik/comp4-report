@@ -22,7 +22,7 @@ and appointments are messy.
 My project aims to improve Amartya's organisation skills by \textbf{making it
 easier} to keep track of events, appointments and to-dos at various levels of
 detail including monthly, daily, and hourly, and by reminding the user about
-chosen events.
+chosen appointments or to-dos.
 
 
 \subsection{Current system}
@@ -58,32 +58,35 @@ providing advanced features such as calendar functions, to-do creation, and
 timeline views with physical printouts.
 
 
-\subsection{End users}
+\subsection{Potential users}
 
-My client is Amartya. I am planning to develop the software around Amartya's
-specifications and requirements, but the end users could include me and other
-students at the school. I may also be able to market the software given enough
-time.
+My main client for this project is Amartya. I am planning to develop the
+software around Amartya's specifications and requirements, but this could
+expand to myself and other students at my school. Given more time to polish the
+software, I may also be able to sell it as an organiser package - however that
+would be a later extension to the project.
 
 
 \subsection{Requirements and limitations}
 
 \begin{itemize}
-  \item The software must store data in a database reliably, so data
-        corruption does not occur.
-  \item The software must allow searching for events using keywords.
-  \item The software must allow searching for events within a range of
-        days.
-  \item The software must be able to show a summary of events in a year
-        calendar view, a month view, and a day view.
-  \item The software must have an option to create desktop alerts for selected
-        events.
-  \item The software's menus should be straightforward and easy to move
-        through.
-  \item The software could have 'family sharing', so that authorised
-        users can view another person's calendar.
+  \item The software must store data in a database reliably, so data corruption
+      does not occur.
+  \item The user must be able to create appointments (descriptive events with a
+      possible associated time and location) and to-dos (simple text e.g. a
+      single bullet point)
+  \item The software must allow searching for appointments using keywords.
+  \item The software must allow searching for appointments within a range of
+      days.
+  \item The software must be able to show a summary of appointments in a year
+      calendar view, a month view, and a day view.
+  \item The software must have an option to create desktop alerts for
+      appointments, which must trigger at a time set by the user.
+  \item The software's menus should be straightforward and easy to move through.
+  \item The software could have 'family sharing', so that authorised users can
+      view another person's calendar.
   \item The software could make a printable copy of the different views.
-\end{itemize}
+  \end{itemize}
 
 
 \subsection{Data sources and destinations}
@@ -95,7 +98,7 @@ owning the calendar (or other people with access to the computer with the
 calendar on).
 
 The entered to-dos or appointments will be stored in a database and will be able
-to be viewed on the calendar views. Any events with notifications enabled will
+to be viewed on the calendar views. Any appointments with notifications enabled will
 store extra information.
 
 
@@ -182,15 +185,15 @@ What the hell is this? Big TODO.
 e.g. The user must be able to:
 
 \begin{itemize}
-  \item Create new events
-  \item Edit pre-existing events
-  \item Remove events (including both finished ones and ones not yet passed)
-  \item View events in a number of ways:
+  \item Create new appointments
+  \item Edit pre-existing appointments
+  \item Remove appointments (including both finished ones and ones not yet passed)
+  \item View appointments in a number of ways:
       \begin{enumerate}
-      \item View events for a chosen day by hour
-      \item View events for a chosen week (past or future)
-      \item View events for a chosen month
-      \item View events for a chosen year
+      \item View appointments for a chosen day by hour
+      \item View appointments for a chosen week (past or future)
+      \item View appointments for a chosen month
+      \item View appointments for a chosen year
       \end{enumerate}
   \item Print any of the calendar views described above
 \end{itemize}
@@ -247,7 +250,7 @@ TODO
 \end{itemize}
 
 There are also a number of potential paper-based systems. Year calendars are a
-very common tool used to track important events over a year. For a more structured system,
+very common tool used to track important appointments over a year. For a more structured system,
 you could use smaller calendars for months, or keep a sheet for writing down
 appointments for the coming week. To-dos are relatively simple: 
 
