@@ -1,7 +1,7 @@
 % vim: spell
 \section{Analysis}
 
-\subsection{Background \& identification of problem}
+\subsection{Problem identification}
 
 \note{I need this b/c it gives details about my client}
 Amartya is a Sixth Form student at Reading School taking 4 A-levels plus an EPQ.
@@ -52,7 +52,7 @@ of problems, however:
         which is what an organising system should do for you.
 \end{itemize}
 
-Overall, using only post-its forms a hard-to-use and rudimentary system. My new
+Overall, using only post-its makes a hard-to-use and rudimentary system. My new
 system plans to replace the post-it system by with a more complete organiser:
 providing advanced features such as calendar functions, to-do creation, and
 timeline views with physical printouts.
@@ -74,14 +74,14 @@ would be a later extension to the project.
       does not occur.
   \item The user must be able to create appointments (descriptive events with a
       possible associated time and location) and to-dos (simple text e.g. a
-      single bullet point)
-  \item The software must allow searching for appointments using keywords.
+      single bullet point).
+  \item The software must allow searching using keywords.
   \item The software must allow searching for appointments within a range of
       days.
   \item The software must be able to show a summary of appointments in a year
       calendar view, a month view, and a day view.
   \item The software must have an option to create desktop alerts for
-      appointments, which must trigger at a time set by the user.
+      appointments, which must trigger at user-defined time.
   \item The software's menus should be straightforward and easy to move through.
   \item The software could have 'family sharing', so that authorised users can
       view another person's calendar.
@@ -97,9 +97,9 @@ desk. The new system will stay the same in that the only source is the user
 owning the calendar (or other people with access to the computer with the
 calendar on).
 
-The entered to-dos or appointments will be stored in a database and will be able
-to be viewed on the calendar views. Any appointments with notifications enabled will
-store extra information.
+The entered to-dos or appointments will be stored in a database (in separate
+tables) and will be able to be viewed on the calendar views. Notifications will
+store a time and a pointer to the appointment they notify about.
 
 
 \subsection{Data volumes}
