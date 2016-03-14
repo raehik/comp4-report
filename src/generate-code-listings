@@ -68,7 +68,7 @@ src_lang="cpp"
 src_ext="cpp"
 inc_ext="h"
 
-root_path="$HOME/school/cs/comp4/comp4-project/digital-organiser"
+root_path="$HOME/school/cs/comp4/comp4-project/organisr"
 src_path="src"
 inc_path="include"
 
