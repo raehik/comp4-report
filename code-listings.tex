@@ -3,9 +3,13 @@
 \inputlib{code-listings}
 %% }}}
 
+% fix usage of checkmark
 \usepackage{amsfonts}
 \usepackage{newunicodechar}
 \newunicodechar{✓}{\checkmark}
+
+% make minted line numbers a bit bigger
+\renewcommand{\theFancyVerbLine}{\footnotesize\arabic{FancyVerbLine}}
 
 \begin{document}
 
