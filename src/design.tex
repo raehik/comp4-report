@@ -1,16 +1,131 @@
 \section{Design}
 \subsection{System overview}
 
-I am approaching the design of the system modularly i.e. as much of the system
-as possible should be 'pluggable'. Where required, classes and modules should be
-required to inherit from a base class or module, or be forced to expose certain
-functions, as a sort of API. For example, the class for handling data storage
-and retrieval could use any object of a 'database helper' type (an interface in
-Java), and it would expect the class to know how to handle different functions,
-and what return types are required. In this way, a handler for a different
-database could be written with minimal code duplication, which would be useful
-if I need to change database systems (e.g. to MySQL).
+The system can be split into two main parts:
 
+\begin{itemize}
+    \item Data-related classes
+    \item Interface-related classes
+\end{itemize}
+
+The first decision I have is on programming language, which will determine which
+toolkits and packages I can use. Since I'm developing a desktop program using a
+Linux-based OS, I decided on \textbf{C++} over Java or C\#, because from
+experience I've found developing Java on Linux is troublesome, and C\#/.NET is a
+Windows-based framework.
+
+In my proposed system, data must be stored between program sessions. The main
+database options available to me are:
+
+\begin{itemize}
+    \item A plain text file which is loaded into memory every time data needs to
+          be accessed.
+    \item A SQLite database (local, simple to set up, highly tested \&
+          reliable).
+    \item A MySQL database (remote, requires Internet access, needs
+          adminstrating).
+\end{itemize}
+
+I will be using SQLite for a local storage database, since it provides reliable
+and fast data storage and searching, plus stores its database as a file on the
+host computer so can be used offline.
+
+For the interface, I have only a couple of viable options:
+
+\begin{itemize}
+    \item Qt, a C++ framework which provides a GUI framework strongly
+          interlinked with Q* utility classes (e.g. QDate)
+    \item GTK+, a C/C++ GUI toolkit, providing very similar graphical elements
+          but fewer 'extra' features
+\end{itemize}
+
+I decided on Qt because it was written in and for C++, and I wouldn't have to
+implement so many of my own utility classes. It also makes writing
+cross-platform software easier.
+
+
+\subsubsection{System modularity}
+
+I am approaching the design of the system modularly, i.e. as much of the system
+as possible will be \textit{pluggable}. Where required, classes and modules will
+be required to inherit from a base class or module, or need to expose certain
+functions, as a sort of API or 'contract'. For example, the class for handling
+data storage and retrieval could use any generic \textbf{database helper}
+object, and it would assume the class knows how to handle certain function
+calls, and what return types it expects. In this way, a handler for a different
+database could be written with minimal code duplication, which would be useful
+if I need/want to change database systems (e.g. to CSV). This design also has
+the side effect of making exporting data into different formats easier (a
+potential feature to implement later).
+
+As much as possible, the data classes will not depend on specific features of my
+chosen GUI framework. Because I'm using Qt there will be some overlap to
+minimise code duplication and unneeded extra work, but I plan only to use Qt
+features for things which can easily be swapped out for more abstract classes
+later.
+
+
+\subsection{Database records}
+
+The database for my system will hold three types of records: \textbf{to-dos},
+\textbf{appointments} and \textbf{notifications}. Each record has different
+fields. For each table, field types are shown next to the field name in brackets
+for the first row. Each following row is an example valid record.
+
+\subsubsection{To-do}
+
+\newcommand{\R}{\\ \hline}
+\begin{table}[H]
+    \centering
+    \begin{tabulary}{\linewidth}{|L|L|L|} \hline
+        \thead{ID (integer)} & \thead{Text (string)} & \thead{Completed? (Boolean)} \\ \hline
+        1 & Order The \TeX Book                   & false \R
+        2 & Buy some milk                         & true  \R
+        3 & Check 'characters' allowed in a todo. & true  \R
+    \end{tabulary}
+    \caption{Example to-do records.}
+    \label{tbl:todo-rec}
+\end{table}
+
+To-dos IDs increment starting at 1. \texttt{Text} can be any string. The
+\texttt{Completed?} field defines whether a to-do is 'finished' or not. A
+completed to-do will show up at the bottom of the full to-do list and will
+be clearly indicated as finished.
+
+All the fields in a to-do are \textbf{required}.
+
+
+\subsubsection{Appointment}
+
+\begin{table}[H]
+    \centering
+    \begin{tabulary}{\linewidth}{|L|L|L|L|L|L|} \hline
+        \thead{ID (int.)} &
+        \thead{Title (str.)} &
+        \thead{Date (int.)} &
+        \thead{Description (str.)} &
+        \thead{Time (int.)} &
+        \thead{Location (str.)} \\ \hline
+        1 & Work meeting & 2457431 &
+            Amy \& Bob presenting their research in big data &
+            58800 & Meeting room \R
+    \end{tabulary}
+    \caption{Example appointment records.}
+    \label{tbl:todo-appt}
+\end{table}
+
+In an appointment record, the \textbf{ID, title, date and time} fields are
+required. The location and description are fields for extra information, which
+will make it easier to visually search through appointments for certain events.
+
+
+\subsection{IPSO table}
+
+\todo{Use Excel}
+
+
+\subsection{TO CHECK/REMOVE}
+\subsection{System overview}
 \subsubsection{Main classes}
 
 \newcommand{\classitem}[1]{\item \textbf{#1}}
@@ -61,14 +176,5 @@ about the database being used.
 
 \begin{itemize}
     \item \verb+insert_appts(vector<Appointment>)+
-    \item \verb+select_appts(string title, striang description)+
+    \item \verb+select_appts(string title, string description)+
 \end{itemize}
-
-
-\subsection{System components}
-\subsection{IPSO table}
-
-\todo{Use Excel}
-
-
-\subsection{Design Data Dictionary}
