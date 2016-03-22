@@ -200,12 +200,6 @@ e.g. The user must be able to:
 
 \subsection{Potential solutions}
 
-\newcommand{\solreq}[1]{\thead{#1}&}
-\newcommand{\solreqlast}[1]{\thead{#1} \\}
-\newcommand{\solname}[1]{\thead{#1}&}
-\newcommand{\solY}{\multicolumn{1}{c|}{Yes}}
-\newcommand{\solN}{\multicolumn{1}{c|}{No}}
-
 \note{I am NOT ALLOWED physical systems here!!! They have to be computer-based
 solutions.}
 
@@ -254,7 +248,15 @@ very common tool used to track important appointments over a year. For a more st
 you could use smaller calendars for months, or keep a sheet for writing down
 appointments for the coming week. To-dos are relatively simple: 
 
-\starttable{*{4}{|p{2cm}}|}
+TODO
+
+\newcommand{\solreq}[1]{\thead{#1}&}
+\newcommand{\solreqlast}[1]{\thead{#1} \\}
+\newcommand{\solname}[1]{\thead{#1}&}
+\newcommand{\solY}{\multicolumn{1}{c|}{Yes}}
+\newcommand{\solN}{\multicolumn{1}{c|}{No}}
+
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
   \hl
   \thead{Possible solutions} &
     % requirements
@@ -264,7 +266,8 @@ appointments for the coming week. To-dos are relatively simple:
   \hl
   \solname{Solution 1}
   \solY & \solN & \solY \\
-\stoptable
+  \hl
+\end{tabularx}
 
 \subsection{Chosen solution}
 
