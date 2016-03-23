@@ -1,10 +1,12 @@
 %% Preamble {{{
-\input{lib/generic-macros}
-\inputlib{generic-preamble}
-\inputlib{tables}
-\inputlib{headers-footers}
-\inputlib{annotate}
-\inputlib{er}
+% setup macros for \input-ing libs & source files
+\newcommand{\addmylib}[1]{\input{lib/#1}}
+\newcommand{\addsrc}[1]{\input{src/#1}}
+
+\addmylib{preamble}
+\addmylib{annotate}
+\addmylib{extra/tables}
+\addmylib{extra/headers-footers}
 %% }}}
 
 \begin{document}
@@ -27,12 +29,12 @@
 \clearpage
 %% }}}
 
-\inputsrc{analysis}
+\addsrc{analysis}
 \clearpage
-\inputsrc{design}
+\addsrc{design}
 
 \clearpage
 \section{Appendix}
-\inputsrc{interview}
+\addsrc{interview}
 
 \end{document}
