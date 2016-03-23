@@ -126,10 +126,8 @@ the software should not be resource-intensive while the user is not using it.
 
 \newcommand{\dictline}[1]{#1 \\ \hline}
 
-\starttable{|l|l|p{6cm}|}
-  \hline
-  \thead{Data piece} & \thead{Data type} & \thead{Description} \\
-  \hline
+\begin{tabulary}{\linewidth}{|L|L|L|} \hline
+  \textbf{Data piece} & \textbf{Data type} & \textbf{Description} \\ \hline
   \dictline{Appointment & Class & A timed or untimed appointment/event.}
   \dictline{Appointment title & String & What the appointment is for.}
   \dictline{Appointment location & String & (optional) An optional location for the appointment (e.g. home, work).}
@@ -141,7 +139,7 @@ the software should not be resource-intensive while the user is not using it.
   \dictline{Notification & Class & A class to hold a notification.}
   \dictline{Notification time & Date/time & Date/time to show the notification at.}
   \dictline{Notification description & String & Text to show on-screen when notification is active.}
-\stoptable
+\end{tabulary}
 
 \subsection{Data flow diagrams}
 \subsubsection{Current system}
@@ -246,28 +244,26 @@ TODO
 There are also a number of potential paper-based systems. Year calendars are a
 very common tool used to track important appointments over a year. For a more structured system,
 you could use smaller calendars for months, or keep a sheet for writing down
-appointments for the coming week. To-dos are relatively simple: 
+appointments for the coming week. To-dos are relatively simple:
 
 TODO
 
-\newcommand{\solreq}[1]{\thead{#1}&}
-\newcommand{\solreqlast}[1]{\thead{#1} \\}
-\newcommand{\solname}[1]{\thead{#1}&}
+\newcommand{\solreq}[1]{\textbf{#1}&}
+\newcommand{\solreqlast}[1]{\textbf{#1} \\}
+\newcommand{\solname}[1]{\textbf{#1}&}
 \newcommand{\solY}{\multicolumn{1}{c|}{Yes}}
 \newcommand{\solN}{\multicolumn{1}{c|}{No}}
 
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
-  \hl
-  \thead{Possible solutions} &
+\begin{tabulary}{\textwidth}{|L|L|L|L|} \hline
+  \textbf{Possible solutions} &
     % requirements
     \solreq{Interview}
     \solreq{Amartya}
     \solreqlast{and put requirements here}
-  \hl
+  \hline
   \solname{Solution 1}
-  \solY & \solN & \solY \\
-  \hl
-\end{tabularx}
+  \solY & \solN & \solY \R
+\end{tabulary}
 
 \subsection{Chosen solution}
 
