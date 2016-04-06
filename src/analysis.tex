@@ -187,67 +187,63 @@ e.g. The user must be able to:
   \item Edit pre-existing appointments
   \item Remove appointments (including both finished ones and ones not yet passed)
   \item View appointments in a number of ways:
-      \begin{enumerate}
+  \begin{enumerate}
       \item View appointments for a chosen day by hour
       \item View appointments for a chosen week (past or future)
       \item View appointments for a chosen month
       \item View appointments for a chosen year
-      \end{enumerate}
+  \end{enumerate}
   \item Print any of the calendar views described above
 \end{itemize}
 
+
 \subsection{Potential solutions}
-
-\note{I am NOT ALLOWED physical systems here!!! They have to be computer-based
-solutions.}
-
 \subsubsection{Pre-existing digital solution}
 
 There are a number of existing digital calendars available for varying
-platforms. A stand-out contender is Google Calendar
+platforms. A stand-out contender is \textbf{Google Calendar}, a web-based
+calendar which syncs up with Android phones. However, you cannot access your
+calendar if you're offline. Also, Google Calendar uses all the details it knows
+about you to help you form your appointments and reminders: this is a useful
+feature, but some find it invasive to their privacy.
 
-\subsubsection{Excel spreadsheet}
+
+\subsubsection{Excel spreadsheet using macros}
 
 Excel spreadsheets are a simple way to record data in a structured way so that
 it can easily be understood. As well, macros give spreadsheets much more
 flexibility, since complex functions can be created to speed up certain
-operations.
+operations. However, using this method, the main spreadsheet might have to be
+updated continually to work with newer versions of Excel. It could be difficult
+to update a calendar to use a new version of the main spreadsheet. The user
+would be limited to using Excel for their calendar, and Excel is only available
+for Windows and Mac (not Linux-based OSes).
 
-TODO
 
 \subsubsection{Desktop application}
 
-\begin{itemize}
-  \item + The software could be used offline.
-  \item + Data operations are almost always faster than querying data on a
-          remote server.
-  \item + I wouldn't have to pay for or administrate a server.
-  \item - I would have to compile the software for both Windows and Linux.
-\end{itemize}
-
-\todo{More pluses!}
+The main point for a desktop app is that it can be used offline. Data operations
+(e.g. searching for appointments, creating a to-do) are faster than querying for
+the same data on a remote server for all but the slowest computers. Since data
+would be stored locally, I wouldn't have to pay for or administrate a database
+or server. I would need to compile the software for Windows and Linux, but with
+some planning it should be simple.
 
 
 \subsubsection{Web application}
 
-\begin{itemize}
-  \item + It would be easy to make it compatible with all major operating
-          systems.
-  \item + It would be simple to implement mobile support.
-  \item + Graphical interfaces are simple to create.
-  \item - Some tasks may be harder to perform -- e.g. printing, event alerts
-  \item - I would be competing with many other web-based calendars.
-  \item - I would need to spend time learning how to use the various tools in
-          the web development stack.
-\end{itemize}
+Alternatively I could write my own web-based calendar. This way, it would be
+compatible with all major OSes, and mobile support is easy to implement.
+Creating complex graphical interfaces is simple in JavaScript compared to
+writing in a lower-level language such as C++. However, my application would be
+competing with many other web calendars services. Some tasks such as printing
+and event alerts may pose more of a challenge to perform in a web browser. I
+would need to pay for a server to run my application. Also, I haven't done web
+development before, so I would need to spend time learning how to use various
+tools in the web development stack.
 
-There are also a number of potential paper-based systems. Year calendars are a
-very common tool used to track important appointments over a year. For a more structured system,
-you could use smaller calendars for months, or keep a sheet for writing down
-appointments for the coming week. To-dos are relatively simple:
 
-TODO
-
+% table TODO {{{
 \newcommand{\solreq}[1]{\textbf{#1}&}
 \newcommand{\solreqlast}[1]{\textbf{#1} \\}
 \newcommand{\solname}[1]{\textbf{#1}&}
@@ -264,9 +260,11 @@ TODO
   \solname{Solution 1}
   \solY & \solN & \solY \R
 \end{tabulary}
+% }}}
 
 \subsection{Chosen solution}
 
 \todo{+ explain how alternative solutions could have been done}
+My program will be fully offline and won't gather information about users.
 
 \todo{End of analysis? Check}
