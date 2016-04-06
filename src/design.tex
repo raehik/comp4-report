@@ -1,12 +1,6 @@
 \section{Design}
 \subsection{System overview}
-
-The system can be split into two main parts:
-
-\begin{itemize}
-    \item Data-related classes
-    \item Interface-related classes
-\end{itemize}
+\subsubsection{Software choices}
 
 The first decision I have is on programming language, which will determine which
 toolkits and packages I can use. Since I'm developing a desktop program using a
@@ -19,7 +13,7 @@ database options available to me are:
 
 \begin{itemize}
     \item A plain text file which is loaded into memory every time data needs to
-          be accessed.
+        be accessed (unreliable \& requires further testing, easier to code).
     \item A SQLite database (local, simple to set up, highly tested \&
           reliable).
     \item A MySQL database (remote, requires Internet access, needs
@@ -30,7 +24,7 @@ I will be using SQLite for a local storage database, since it provides reliable
 and fast data storage and searching, plus stores its database as a file on the
 host computer so can be used offline.
 
-For the interface, I have only a couple of viable options:
+For the user interface, I have only a couple of viable options:
 
 \begin{itemize}
     \item Qt, a C++ framework which provides a GUI framework strongly
@@ -40,8 +34,8 @@ For the interface, I have only a couple of viable options:
 \end{itemize}
 
 I decided on Qt because it was written in and for C++, and I wouldn't have to
-implement so many of my own utility classes. It also makes writing
-cross-platform software easier.
+implement so many of my own utility classes for the graphical parts. It also
+makes writing cross-platform software easier.
 
 
 \subsubsection{System modularity}
@@ -55,7 +49,7 @@ object, and it would assume the class knows how to handle certain function
 calls, and what return types it expects. In this way, a handler for a different
 database could be written with minimal code duplication, which would be useful
 if I need/want to change database systems (e.g. to CSV). This design also has
-the side effect of making exporting data into different formats easier (a
+the useful implication of making exporting data into different formats easier (a
 potential feature to implement later).
 
 As much as possible, the data classes will not depend on specific features of my
@@ -77,16 +71,18 @@ for the first row. Each following row is an example valid record.
 \begin{table}[H]
     \centering
     \begin{tabulary}{\linewidth}{|L|L|L|} \hline
-        \textbf{ID (integer)} & \textbf{Text (string)} & \textbf{Completed? (Boolean)} \\ \hline
+            \textbf{ID (integer)} &
+            \textbf{Text (string)} &
+            \textbf{Completed? (Boolean)} \\ \hline
         1 & Order The \TeX Book                   & false \R
         2 & Buy some milk                         & true  \R
-        3 & Check 'characters' allowed in a todo. & true  \R
+        3 & Check 'characters' allowed in a todo  & true  \R
     \end{tabulary}
     \caption{Example to-do records.}
     \label{tbl:todo-rec}
 \end{table}
 
-To-dos IDs increment starting at 1. \texttt{Text} can be any string. The
+To-do IDs increment starting from 1. \texttt{Text} can be any string. The
 \texttt{Completed?} field defines whether a to-do is 'finished' or not. A
 completed to-do will show up at the bottom of the full to-do list and will
 be clearly indicated as finished.
@@ -99,12 +95,12 @@ All the fields in a to-do are \textbf{required}.
 \begin{table}[H]
     \centering
     \begin{tabulary}{\linewidth}{|L|L|L|L|L|L|} \hline
-        \textbf{ID (int.)} &
-        \textbf{Title (str.)} &
-        \textbf{Date (int.)} &
-        \textbf{Description (str.)} &
-        \textbf{Time (int.)} &
-        \textbf{Location (str.)} \\ \hline
+            \textbf{ID (int.)} &
+            \textbf{Title (str.)} &
+            \textbf{Date (int.)} &
+            \textbf{Description (str.)} &
+            \textbf{Time (int.)} &
+            \textbf{Location (str.)} \\ \hline
         1 & Work meeting & 2457431 &
             Amy \& Bob presenting their research in big data &
             58800 & Meeting room \R
@@ -126,6 +122,13 @@ will make it easier to visually search through appointments for certain events.
 \subsection{TO CHECK/REMOVE}
 \subsection{System overview}
 \subsubsection{Main classes}
+
+The system can be split into two main parts:
+
+\begin{itemize}
+    \item Data-related classes
+    \item Interface-related classes
+\end{itemize}
 
 \newcommand{\classitem}[1]{\item \textbf{#1}}
 
