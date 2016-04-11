@@ -1,6 +1,7 @@
 % vim: spell
 \section{Analysis}
 
+\boxref{1.1-bg}
 \subsection{Problem identification}
 
 \note{I need this b/c it gives details about my client}
@@ -25,6 +26,7 @@ detail including monthly, daily, and hourly, and by reminding the user about
 chosen appointments or to-dos.
 
 
+\boxref{1.2-cur}
 \subsection{Current system}
 
 Amartya uses post-it notes for both short-term tasks (such as remembering to
@@ -47,27 +49,50 @@ of problems, however:
         accidentally place one post-it over another and forget about the one
         underneath.
   \item The system doesn't show you what you need to do now or soon -- you have
-        to search through the post-it notes and decide for yourself. This could
-        also mean you have to 'remember' which projects you need to work on,
-        which is what an organising system should do for you.
+        to search through the post-it notes and decide for yourself, rather
+        than having coming-up events prioritised. This could also mean you have
+        to 'remember' which projects you need to work on, which is what an
+        organising system should do \textit{for} you.
 \end{itemize}
 
 Overall, using only post-its makes a hard-to-use and rudimentary system. My new
-system plans to replace the post-it system by with a more complete organiser:
-providing advanced features such as calendar functions, to-do creation, and
-timeline views with physical printouts.
+system plans to replace the post-it system by with a \textbf{more complete
+organiser}: providing advanced features such as calendar functions, to-do
+creation, and timeline views with physical printouts, as well as fixing the
+problem of priority.
 
 
+\boxref{1.3-usr}
 \subsection{Potential users}
 
-My main client for this project is Amartya. I am planning to develop the
-software around Amartya's specifications and requirements, but this could
-expand to myself and other students at my school. Given more time to polish the
-software, I may also be able to sell it as an organiser package - however that
-would be a later extension to the project.
+My client for this project is Amartya, who is also my end user. The software
+could potentially be used by his family members and other students at my school.
+Given more time to polish the software, I may also be able to sell it as a
+personal organisation package.
+
+Users will require basic IT competency i.e. keyboard \& mouse to use the
+software normally. Some people might want to back up their data, for which they
+would need to copy the database file (stored in a user's personal application
+data folder) to another location periodically. This folder can move depending
+on the host computer. I will add some instructions for this in the user manual
+but otherwise assume they have the understanding required.
+
+ICT is taught up to KS3 level in my school, so I can safely assume all students
+would be comfortable. Most adults nowadays have basic IT skills, but to cater
+for those who are less experienced with computers I will make the manual very
+clear and simple to follow.
 
 
-\subsection{Requirements and limitations}
+\boxref{1.4-reqlim}
+\subsection{Project requirements}
+
+\subsubsection{Design}
+\begin{itemize}
+    \item The software must behave well as a small window, since it's a useful
+        application to keep on the desktop permanently (as a digital to-do
+        list).
+\end{itemize}
+
 
 \begin{itemize}
   \item The software must store data in a database reliably, so data corruption
@@ -86,9 +111,18 @@ would be a later extension to the project.
   \item The software could have 'family sharing', so that authorised users can
       view another person's calendar.
   \item The software could make a printable copy of the different views.
-  \end{itemize}
+\end{itemize}
 
 
+\boxref{1.4-reqlim}
+\subsection{Project limitations}
+
+\begin{itemize}
+    \item The software must not 
+\end{itemize}
+
+
+\boxref{1.5-datasrc}
 \subsection{Data sources and destinations}
 
 In the current system the user who is organising themselves makes post-it notes.
@@ -102,6 +136,7 @@ tables) and will be able to be viewed on the calendar views. Notifications will
 store a time and a pointer to the appointment they notify about.
 
 
+\boxref{1.6-datavol}
 \subsection{Data volumes}
 
 Only textual data will be stored: times, descriptions etc. are all
@@ -122,6 +157,7 @@ left running in the background while a computer is on for notifications. Thus
 the software should not be resource-intensive while the user is not using it.
 
 
+\boxref{1.7-add}
 \subsection{Analysis data dictionary}
 
 \newcommand{\dictline}[1]{#1 \\ \hline}
@@ -141,6 +177,8 @@ the software should not be resource-intensive while the user is not using it.
   \dictline{Notification description & String & Text to show on-screen when notification is active.}
 \end{tabulary}
 
+
+\boxref{1.8-dfd}
 \subsection{Data flow diagrams}
 \subsubsection{Current system}
 
@@ -165,6 +203,8 @@ the software should not be resource-intensive while the user is not using it.
     {DFD of the proposed digital system}
     {fig:dfd-new}
 
+
+\boxref{1.9-er}
 \subsection{Entity-relationship model}
 
 \addfigure
@@ -172,10 +212,14 @@ the software should not be resource-intensive while the user is not using it.
     {Entity-relationship model for the proposed system}
     {fig:er-model-new}
 
+
+\boxref{1.10-objdiag}
 \subsection{Object analysis diagram}
 
 What the hell is this? Big TODO.
 
+
+\boxref{1.11-objs}
 \subsection{Objectives}
 
 \todo{Numbered! Maybe?}
@@ -197,6 +241,7 @@ e.g. The user must be able to:
 \end{itemize}
 
 
+\boxref{1.12-sols}
 \subsection{Potential solutions}
 \subsubsection{Pre-existing digital solution}
 
@@ -262,9 +307,13 @@ tools in the web development stack.
 \end{tabulary}
 % }}}
 
+
+\boxref{1.13-chosensol}
 \subsection{Chosen solution}
+
+I decided on a desktop 
 
 \todo{+ explain how alternative solutions could have been done}
 My program will be fully offline and won't gather information about users.
 
-\todo{End of analysis? Check}
+\todo{evidence of use of analysis... 1.14}
