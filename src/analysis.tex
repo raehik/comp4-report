@@ -86,39 +86,45 @@ clear and simple to follow.
 \boxref{1.4-reqlim}
 \subsection{Project requirements}
 
-\subsubsection{Design}
 \begin{itemize}
-    \item The software must behave well as a small window, since it's a useful
-        application to keep on the desktop permanently (as a digital to-do
-        list).
+  \item The software must store data reliably and ensure that data corruption
+        does not occur.
+  \item The user must be able to create and edit \textbf{appointments}: events
+        which associate a sentence or note with a date and time, and extra
+        description if required.
+  \item The user must also be able to create \textbf{to-dos}, simple notes like
+        you would write on a bulleted list.
+  \item The software must be able to show a summary of appointments.
 \end{itemize}
 
-
+\todo{Still to-do}
 \begin{itemize}
-  \item The software must store data in a database reliably, so data corruption
-      does not occur.
-  \item The user must be able to create appointments (descriptive events with a
-      possible associated time and location) and to-dos (simple text e.g. a
-      single bullet point).
+  \item The user must be able to create desktop alerts for appointments, which
+        would trigger a notification for an appointment at user-defined time.
   \item The software must allow searching using keywords.
-  \item The software must allow searching for appointments within a range of
-      days.
-  \item The software must be able to show a summary of appointments in a year
-      calendar view, a month view, and a day view.
-  \item The software must have an option to create desktop alerts for
-      appointments, which must trigger at user-defined time.
-  \item The software's menus should be straightforward and easy to move through.
-  \item The software could have 'family sharing', so that authorised users can
-      view another person's calendar.
-  \item The software could make a printable copy of the different views.
 \end{itemize}
 
-
-\boxref{1.4-reqlim}
-\subsection{Project limitations}
-
+\subsubsection{Later additions}
 \begin{itemize}
-    \item The software must not 
+  \item The software could allow users to keep multiple calendars and switch
+        between them.
+  \item The software could synchronise with other popular calendar services,
+        especially Google Calendar.
+  \item The software could have 'family sharing', so that authorised users can
+        view another person's calendar.
+  \item The user could make printable copies of some windows and widgets
+        (e.g. print out a display of the months appointments).
+\end{itemize}
+
+\subsection{Project limitations}
+\begin{itemize}
+    \item I will not be including synchronisation with other calendar services
+          such as Google Calendar or CalDAV. My software has an emphasis
+          on offline usage (e.g. for a laptop), and CalDAV software is not yet
+          widespread, most commonly used by hobbyists on private servers. To
+          make synchronisation work properly I would end up duplicating some
+          Google Calendar features, so I will keep it as potential feature for
+          later.
 \end{itemize}
 
 
@@ -143,14 +149,19 @@ Only textual data will be stored: times, descriptions etc. are all
 non-binary. Data for a single calendar such as appointments and to-dos will be
 stored in a single database.
 
-Each calendar is intended to be accessed and edited by a single user. If a
-'family sharing' feature is implemented, other users would be able to view
-another user's calendar (but not edit it).
+\textbf{Each calendar is intended to be accessed and edited by a single user.}
+\textit{(If a 'family sharing' feature is implemented, other users would be able
+to view another user's calendar, but not edit it.)} The user (or group if the
+calendar is used on a shared user account) to which the calendar belongs is the
+only information source for the system. With calendar synchronisation, events
+could be added indirectly, since any event on the remote calendar would be added
+to the local calendar on my software.
 
 The system can have any number of calendars available. Only one calendar can be
 loaded at any time and each calendar is stored in a separate database. I am
 making this system expecting that it will be used by a family -- therefore at
-most there will be 10 users using the system concurrently.
+most there will be 10 users using the system concurrently, all in different
+processes/instances.
 
 Users may access the system up to a few times every hour. The software may be
 left running in the background while a computer is on for notifications. Thus
@@ -240,6 +251,18 @@ e.g. The user must be able to:
   \item Print any of the calendar views described above
 \end{itemize}
 
+TODO:
+
+All operations should be clear and easy to access (e.g. add to-do,
+monthly view).
+
+\begin{itemize}
+  \item The software must behave well as a small window, since it's a useful
+        application to keep on the desktop permanently (as a digital to-do
+        list).
+  \item The software's menus should be straightforward and easy to move through.
+\end{itemize}
+
 
 \boxref{1.12-sols}
 \subsection{Potential solutions}
@@ -312,6 +335,12 @@ tools in the web development stack.
 \subsection{Chosen solution}
 
 I decided on a desktop 
+
+I chose not to allow swapping between multiple calendars for a single user,
+since it adds unnecessary complexity for the user to understand, and if the user
+requires specialised and more complex features, there are better services
+available -- my program's chief aims are to be quick and easy to understand and
+use.
 
 \todo{+ explain how alternative solutions could have been done}
 My program will be fully offline and won't gather information about users.
