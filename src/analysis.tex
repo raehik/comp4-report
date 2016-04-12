@@ -117,15 +117,13 @@ clear and simple to follow.
 \end{itemize}
 
 \subsection{Project limitations}
-\begin{itemize}
-    \item I will not be including synchronisation with other calendar services
-          such as Google Calendar or CalDAV. My software has an emphasis
-          on offline usage (e.g. for a laptop), and CalDAV software is not yet
-          widespread, most commonly used by hobbyists on private servers. To
-          make synchronisation work properly I would end up duplicating some
-          Google Calendar features, so I will keep it as potential feature for
-          later.
-\end{itemize}
+
+I will not include synchronisation with other calendar services such as Google
+Calendar or CalDAV. My software has an emphasis on offline usage (e.g. for a
+laptop) and simplicity, and CalDAV software is not yet widespread, most commonly
+used by hobbyists on private servers. Also to match the API for Google Calendar
+I would end up duplicating some of its features. I will keep two-way
+synchronisation as potential feature for later.
 
 
 \boxref{1.5-datasrc}
@@ -133,13 +131,19 @@ clear and simple to follow.
 
 In the current system the user who is organising themselves makes post-it notes.
 There is also the option for someone else to write a note and leave it on their
-desk. The new system will stay the same in that the only source is the user
-owning the calendar (or other people with access to the computer with the
-calendar on).
+desk. The new system will stay the same in that the only source for to-dos and
+appointments is the user owning the calendar (or other people with access to the
+user account owning the calendar).\footnote{If a 'family sharing' feature is
+implemented, specified users would be able to view or edit another user's
+calendar.} With calendar synchronisation, events could be added indirectly,
+since any event on the remote calendar would be added to the local calendar on
+my software. In general though, it can be assumed calendars are personal and
+kept on a user basis.
 
 The entered to-dos or appointments will be stored in a database (in separate
-tables) and will be able to be viewed on the calendar views. Notifications will
-store a time and a pointer to the appointment they notify about.
+tables) and will be able to be viewed on the calendar views. Notifications be
+stored in another database, and store a notification time and a pointer to the
+appointment it is notifying about.
 
 
 \boxref{1.6-datavol}
@@ -148,14 +152,6 @@ store a time and a pointer to the appointment they notify about.
 Only textual data will be stored: times, descriptions etc. are all
 non-binary. Data for a single calendar such as appointments and to-dos will be
 stored in a single database.
-
-\textbf{Each calendar is intended to be accessed and edited by a single user.}
-\textit{(If a 'family sharing' feature is implemented, other users would be able
-to view another user's calendar, but not edit it.)} The user (or group if the
-calendar is used on a shared user account) to which the calendar belongs is the
-only information source for the system. With calendar synchronisation, events
-could be added indirectly, since any event on the remote calendar would be added
-to the local calendar on my software.
 
 The system can have any number of calendars available. Only one calendar can be
 loaded at any time and each calendar is stored in a separate database. I am
