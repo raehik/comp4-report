@@ -1,6 +1,9 @@
 %% Preamble {{{
-\input{lib/generic-macros}
-\inputlib{code-listings}
+% setup macros for \input-ing libs & source files
+\newcommand{\addmylib}[1]{\input{lib/#1}}
+\newcommand{\addsrc}[1]{\input{src/#1}}
+
+\addmylib{custom/code-listings}
 %% }}}
 
 % fix usage of checkmark
@@ -31,6 +34,6 @@
 \clearpage
 %% }}}
 
-\inputsrc{generated-code-listings}
+\addsrc{generated-code-listings}
 
 \end{document}
