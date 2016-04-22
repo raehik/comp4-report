@@ -168,22 +168,39 @@ the software should not be resource-intensive while the user is not using it.
 \subsection{Analysis data dictionary}
 
 \newcommand{\dictline}[1]{#1 \\ \hline}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\linewidth}{|p{0.2\linewidth}|p{0.15\linewidth}|X|} \hline
+        \textbf{Data} & \textbf{Data type} &
+        \textbf{Description} \R
+        \dictline{Appointment & ApptRecord
+          & A data structure holding a mandatory ID, title string and date \& time, and an
+          optional longer descriptive string, string specifying location.}
+        \dictline{To-do & TodoRecord
+          & A simple data structure containing a mandatory ID, a title string
+          and a Boolean determining whether it has been 'completed'.}
+    %  \dictline{To-do & Class & An untimed to-do note.}
+    %  \dictline{To-do text & Class & The to-do note contents.}
+    %  \dictline{To-do ended? & Boolean & Whether the to-do has ended (i.e. been completed or abandoned).}
+    %  \dictline{To-do end date & Date/time & The date/time a to-do was ended.}
+    %  \dictline{Notification & Class & A class to hold a notification.}
+    %  \dictline{Notification time & Date/time & Date/time to show the notification at.}
+    %  \dictline{Notification description & String & Text to show on-screen when notification is active.}
+    \end{tabularx}
+    \caption{The analysis data dictionary.}
+    \label{tbl:add}
+\end{table}
 
-\begin{tabulary}{\linewidth}{|L|L|L|} \hline
-  \textbf{Data piece} & \textbf{Data type} & \textbf{Description} \\ \hline
-  \dictline{Appointment & Class & A timed or untimed appointment/event.}
-  \dictline{Appointment title & String & What the appointment is for.}
-  \dictline{Appointment location & String & (optional) An optional location for the appointment (e.g. home, work).}
-  \dictline{Appointment description & String & (optional) Extra details for the appointment.}
-  \dictline{To-do & Class & An untimed to-do note.}
-  \dictline{To-do text & Class & The to-do note contents.}
-  \dictline{To-do ended? & Boolean & Whether the to-do has ended (i.e. been completed or abandoned).}
-  \dictline{To-do end date & Date/time & The date/time a to-do was ended.}
-  \dictline{Notification & Class & A class to hold a notification.}
-  \dictline{Notification time & Date/time & Date/time to show the notification at.}
-  \dictline{Notification description & String & Text to show on-screen when notification is active.}
-\end{tabulary}
+%\begin{tabulary}{\linewidth}{|L|L|L|L|} \hline
 
+\begin{itemize}
+    \item \textbf{ApptRecord:}
+    \texttt{1 | "Meeting at lunch" | "Another meeting about architecture plans" |
+    2016-04-20 | 12:00 | "Room 101"}
+
+    \item \textbf{TodoRecord:}
+    \texttt{7 | "Buy groceries" | False}
+\end{itemize}
 
 \boxref{1.8-dfd}
 \subsection{Data flow diagrams}
