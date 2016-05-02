@@ -1,0 +1,34 @@
+# vim: ft=dot
+digraph {
+    rankdir=LR;
+
+    appt_add[label="A1 | Add appointment"];
+    appt_view[label="A2 | View appointments"];
+    appt_search[label="A3 | Search appointments"];
+    appt_del[label="A4 | Delete appointment"];
+    appt_db[label="(D) Appointment database"];
+    todo_add[label="B1 | Add to-do"];
+    todo_view[label="B2 | View to-dos"];
+    todo_complete[label="B3 | Complete to-do"];
+    todo_del[label="B4 | Delete to-do"];
+    todo_db[label="(D) To-do database"];
+    user[label="User"];
+    { rank=same; appt_add, appt_view, appt_del }
+    { rank=same; appt_db, todo_db }
+
+    user -> appt_add[label="Event details"];
+    user -> appt_view[label="Day"];
+    user -> appt_del[label="Click appt. delete button"];
+    appt_add -> appt_db[label="Appointment"];
+    appt_db -> appt_view[label="Appointments for day"];
+    appt_db -> appt_search[label="Matching appointments"];
+
+    user -> todo_add[label="Description"];
+    user -> todo_view[label="Click to-do tab"];
+    user -> todo_del[label="To-do delete button"];
+    todo_add -> todo_db[label="To-do"];
+    todo_del -> todo_db[label="To-do ID"];
+    user -> todo_complete[label="Tick to-do"];
+    todo_complete -> todo_db[label="To-do ID"];
+    todo_db -> todo_view[label="All to-dos"];
+}

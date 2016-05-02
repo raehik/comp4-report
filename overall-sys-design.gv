@@ -1,7 +1,0 @@
-# vim: ft=dot
-digraph {
-    #rankdir=LR
-
-    DataHandler -> DBHelper;
-    DBHelper -> "[Database]";
-}
