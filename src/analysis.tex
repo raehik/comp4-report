@@ -170,36 +170,34 @@ the software should not be resource-intensive while the user is not using it.
 \newcommand{\dictline}[1]{#1 \\ \hline}
 \begin{table}[H]
     \centering
-    \begin{tabularx}{\linewidth}{|p{0.2\linewidth}|p{0.15\linewidth}|X|} \hline
+    \begin{tabularx}{\linewidth}{|p{0.2\linewidth}|p{0.16\linewidth}|X|} \hline
         \textbf{Data} & \textbf{Data type} &
         \textbf{Description} \R
         \dictline{Appointment & ApptRecord
-          & A data structure holding a mandatory ID, title string and date \& time, and an
-          optional longer descriptive string, string specifying location.}
+          & A data structure holding a mandatory ID, title string and date \&
+          time, and an optional longer descriptive string, string specifying
+          location.}
         \dictline{To-do & TodoRecord
           & A simple data structure containing a mandatory ID, a title string
           and a Boolean determining whether it has been 'completed'.}
-    %  \dictline{To-do & Class & An untimed to-do note.}
-    %  \dictline{To-do text & Class & The to-do note contents.}
-    %  \dictline{To-do ended? & Boolean & Whether the to-do has ended (i.e. been completed or abandoned).}
-    %  \dictline{To-do end date & Date/time & The date/time a to-do was ended.}
-    %  \dictline{Notification & Class & A class to hold a notification.}
-    %  \dictline{Notification time & Date/time & Date/time to show the notification at.}
-    %  \dictline{Notification description & String & Text to show on-screen when notification is active.}
+        \dictline{Notification & NotifyRecord
+          & A data structure holding a mandatory ID, an ID of an appointment
+          (ApptRecord), and a date and time to trigger a desktop notification
+          at. (The text shown will be the appointment's title string and its
+          time.)}
     \end{tabularx}
     \caption{The analysis data dictionary.}
     \label{tbl:add}
 \end{table}
 
-%\begin{tabulary}{\linewidth}{|L|L|L|L|} \hline
-
 \begin{itemize}
     \item \textbf{ApptRecord:}
-    \texttt{1 | "Meeting at lunch" | "Another meeting about architecture plans" |
-    2016-04-20 | 12:00 | "Room 101"}
-
+    \texttt{1 | "Meeting at lunch" | "Another meeting about architecture plans"
+    | 2016-04-20 | 12:00 | "Room 101"}
     \item \textbf{TodoRecord:}
     \texttt{7 | "Buy groceries" | False}
+    \item \textbf{NotifyRecord:}
+    \texttt{2 | 1 | 2016-04-20 | 11:45}
 \end{itemize}
 
 \boxref{1.8-dfd}
@@ -235,12 +233,6 @@ the software should not be resource-intensive while the user is not using it.
     {er-model-new}
     {Entity-relationship model for the proposed system}
     {fig:er-model-new}
-
-
-\boxref{1.10-objdiag}
-\subsection{Object analysis diagram}
-
-What the hell is this? Big TODO.
 
 
 \boxref{1.11-objs}
