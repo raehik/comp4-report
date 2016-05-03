@@ -101,13 +101,16 @@ clear and simple to follow.
 
 \subsubsection{Later additions}
 \begin{itemize}
-  \item The software could allow users to keep multiple calendars and switch
+    \item The software could allow users to create notifications for specified
+        appointments to trigger at a specified time.
+    \item The software could allow users to keep multiple calendars and switch
         between them.
-  \item The software could synchronise with other popular calendar services,
+    \item The software could synchronise with other popular calendar services,
         especially Google Calendar.
-  \item The software could have 'family sharing', so that authorised users can
+    \item The software could have 'family sharing', so that authorised users can
         view another person's calendar.
 \end{itemize}
+
 
 \subsection{Project limitations}
 
@@ -134,9 +137,7 @@ my software. In general though, it can be assumed calendars are personal and
 kept on a user basis.
 
 The entered to-dos or appointments will be stored in a database (in separate
-tables) and will be able to be viewed on the calendar views. Notifications be
-stored in another database, and store a notification time and a pointer to the
-appointment it is notifying about.
+tables) and will be able to be viewed on the calendar views.
 
 
 \boxref{1.6-datavol}
@@ -153,8 +154,9 @@ most there will be 10 users using the system concurrently, all in different
 processes/instances.
 
 Users may access the system up to a few times every hour. The software may be
-left running in the background while a computer is on for notifications. Thus
-the software should not be resource-intensive while the user is not using it.
+left running in the background while a computer is on to check occasionally.
+Thus the software should not be resource-intensive while the user is not using
+it.
 
 
 \boxref{1.7-add}
