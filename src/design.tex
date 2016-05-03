@@ -7,7 +7,8 @@ The first decision I have is on programming language, which will determine which
 toolkits and packages I can use. Since I'm developing a desktop program using a
 Linux-based OS, I decided on \textbf{C++} over Java or C\#, because from
 experience I've found developing Java on Linux is troublesome, and C\#/.NET is a
-Windows-based framework.
+Windows-based framework. C++ gives me good flexibility and was made for
+object-oriented projects.
 
 In my proposed system, data must be stored between program sessions. The main
 database options available to me are:
@@ -23,7 +24,8 @@ database options available to me are:
 
 I will be using SQLite for a local storage database, since it provides reliable
 and fast data storage and searching, plus stores its database as a file on the
-host computer so can be used offline.
+host computer so can be used offline. If I was using an online solution, I would
+use MySQL instead, which provides many more features for efficient queries.
 
 For the user interface, I have only a couple of viable options:
 
@@ -39,6 +41,7 @@ implement so many of my own utility classes for the graphical parts. It also
 makes writing cross-platform software easier.
 
 
+\boxref{2.2-modular}
 \subsubsection{System modularity}
 
 I am approaching the design of the system modularly, i.e. as much of the system
@@ -60,12 +63,14 @@ features for things which can easily be swapped out for more abstract classes
 later.
 
 
+\boxref{2.4-records}
 \subsection{Database records}
 
-The database for my system will hold three types of records: \textbf{to-dos},
-\textbf{appointments} and \textbf{notifications}. Each record has different
-fields. For each table, field types are shown next to the field name in brackets
-for the first row. Each following row is an example valid record.
+The database for my system will hold two types of records: \textbf{to-dos} and
+\textbf{appointments}. Each record has different fields. For each table, field
+types are shown next to the field name in brackets for the first row. Each
+following row is an example valid record.
+
 
 \subsubsection{To-do}
 
@@ -110,30 +115,71 @@ All the fields in a to-do are \textbf{required}.
     \label{tbl:todo-appt}
 \end{table}
 
-In an appointment record, the \textbf{ID, title, date and time} fields are
-required. The location and description are fields for extra information, which
-will make it easier to visually search through appointments for certain events.
+ID increments from 1. In an appointment record, the \textbf{ID, title, date and
+time} fields are required. The location and description are fields for extra
+information, which will make it easier to visually search through appointments
+for certain events.
 
 
+\boxref{2.1-overall}
 \subsection{IPSO table}
 
 \todo{Use Excel}
 
 
-\subsection{TO CHECK/REMOVE}
-\subsection{System overview}
-\subsubsection{Main classes}
+\boxref{2.5-validation}
+\subsection{Input validation}
 
-The system can be split into two main parts:
+A SQLite database can store any string of characters -- however, if a
+user escapes their input in a certain way (on purpose or not), it could
+potentially break the record insert statement, which could cause no appointment
+to be added. It is not hard for a malicious user to create a query which would
+end the insert statement early, then run another statement to e.g. delete all
+records in a database.
 
-\begin{itemize}
-    \item Data-related classes
-    \item Interface-related classes
-\end{itemize}
+A programmer can prevent such attacks (known as \textbf{SQL injection
+attacks}) by parameterising user input rather than inserting user input as
+substrings into a main query string. As long as this is implemented, the user
+can input any string and it would be valid for a new record.
+
+The other input validation I need to do is to ensure that all strings are
+displayed correctly. Some of Qt's classes will automatically display strings as
+formatted HTML, meaning users can create unexpected effects and potential layout
+problems if they insert \texttt{<h1>} or other tags. It is possible to disable
+this so that strings are displayed exactly as they were entered.
+
+To-do and appointment records both have some required fields, so when the user
+is entering data for a new record those fields should be checked to make sure
+they are not empty.
+
+
+\boxref{2.6-database-design}
+\subsection{Database design}
+
+TODO
+
+
+\boxref{2.9-data-algos}
+\subsection{Data transformation algorithms}
+
+Dates and times are tricky to handle. If stored in string format (e.g.
+\texttt{2016-01-02 15:30}) it becomes overly complex to compare two records and
+find which is before the other. Thus I need to represent arbitrary dates and
+times as numbers.
+
+This is easy for a time: storing the number of minutes (or seconds) since 00:00
+would suffice, and make comparisons easy and also less data would be stored than
+if a string was used. For a specific day, a common count used is the Julian day,
+which is an integer indicating the number of days since January 1, 4713 BC (the
+start of the Julian Period). This can represent every and any day a user would
+need, and again uses fewer bytes than a string representation.
+
+
+
+
+\subsection{TODO sort}
 
 \newcommand{\classitem}[1]{\item \textbf{#1}}
-
-The main logic classes follow:
 
 \begin{itemize}
     \classitem{DBHelper}: Interface for classes which interface with a specific
@@ -144,10 +190,6 @@ The main logic classes follow:
     Uses a class derived from DBHelper to interface with the actual database.
     \classitem{PDFExporter}
 \end{itemize}
-
-\todo{Shit, there needs to be a bit more logic in this. Probably 5 classes at
-least. I know DataHandler and DBHelper children do a *lot* of heavy lifting, but
-too much is just GUI code.}
 
 \begin{itemize}
     \classitem{GuiMainWindow}: The 'master' GUI window, the main one that the
