@@ -1,7 +1,7 @@
 % vim: spell ft=tex
 \section{Appraisal}
-\boxref{6.1-objectives}
 \subsection{Evaluation of objectives}
+\boxref{6.1-objectives}
 
 \begin{enumerate}
     \item The user must be able to:
@@ -24,9 +24,9 @@ limited as it only allows the user to view the current month.
 left to run passively in the background.
 \end{quotation}
 
-On my computer, running the program has no discernible impact on system
-operation. Leaving it running for a long time (6 hours) does not change the
-resources it uses.
+My program meets this objective. On my computer, running the program has no
+discernible impact on system operation. Leaving it running for a long time (6
+hours) does not change the resources it uses.
 
 \begin{quotation}
 3. The user should be able to view the contents of the application windows
@@ -34,31 +34,32 @@ easily even as small windows, since the software may be kept on the desktop
 permanently (as a digital to-do list).
 \end{quotation}
 
-In general, windows and widgets behave well even when small (600x300 for
-appointments, 300x200 for to-dos). Some widgets fail to render well when made
-smaller than 200x200. The appointment tab especially needs to have a large
-enough height to show the full calendar without 'squishing' of elements.
-However, these situations would only happen in cases where the window is made
-very small.
+My solution meets this objective partially. In general, windows and widgets
+behave well even when small (600x300 for appointments tab, 300x200 for to-dos
+tab). Some widgets fail to render well when made smaller than 200x200. The
+appointment tab especially needs to have a large enough height to show the full
+calendar without 'squishing' of elements.  However, these situations would only
+happen in cases where the window is made very small.
 
 \begin{quotation}
 4. The software should allow printing of any calendar views, and a printout of
 the current to-do list.
 \end{quotation}
 
-When printing the to-do list, only the pending (incomplete) to-dos are put on
-the list, as intended. The two calendar views, daily and monthly, can both be
-printed out: however they aren't formatted specially for printing.
+This objective is partially fulfilled. When printing the to-do list, only the
+pending (incomplete) to-dos are put on the list, as intended. The two calendar
+views, daily and monthly, can both be printed out: however they aren't
+formatted specially for printing. To fully meet it, each printout should look
+like it was made in a word processor, rather than like a screenshot of the program itself.
 
 
-\boxref{6.2-feedback}
-\boxref{6.3-feedback}
 \subsection{Client feedback}
+\boxref{6.2-feedback}
 
 I talked with Amartya about the software, gave him the manual and explained how
 to use the program. From this session I received some feedback from him.
 
-``I found the software very easy to understand and move around in. Since I use
+``I found the software very easy to understand and move through . Since I use
 my laptop so much it's really handy to be able to add a note quickly and not
 worry about losing a post-it note or piece of paper. The program loads up and
 shuts down very quickly, and the keyboard shortcuts detailed in the manual are
@@ -77,11 +78,26 @@ about the appointments found, but it would be better if I could print them out
 like I can with other windows. Also, an edit button for each appointment would
 make amending appointments in the future much faster.''
 
-TODO -- basically check against objectives again
+
+\subsection{Feedback analysis}
+\boxref{6.3-feedback-analysis}
+
+My client said he found it easy to move around the program. Though not a
+specific objective, this is important because it means it should be accessible
+to people who aren't as experienced with computers.
+
+Amartya stated that the program was quick to start and close. This is a great
+outcome, since it's a big advantage over online calendars and some desktop ones.
+
+There were many points made on the user interface and how it could be improved.
+I was using C++ and Qt for the first time so given my time constraints I kept
+some widgets rather basic. With more time and some learning, I could make sure
+the program doesn't 'squish' any of its elements, make printouts which look more
+natural, and possibly introduce some configurable elements such as font size.
 
 
-\boxref{6.4-extensions}
 \subsection{Later extensions}
+\boxref{6.4-extensions}
 
 Something possible in real life that my software did not emulate is the sorting
 and ordering of to-dos. If a user were able to decide on the order of the to-dos
