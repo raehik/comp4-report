@@ -3,7 +3,25 @@
 \boxref{6.1-objectives}
 \subsection{Evaluation of objectives}
 
-
+\begin{enumerate}
+    \item The user must be able to:
+    \begin{enumerate}
+        \item Create and edit appointments
+        \item Remove appointments (including both finished ones and ones not yet
+            passed)
+        \item View appointments by day or in a simpler monthly view
+        \item Create and edit to-dos
+        \item Tick off to-dos as they are completed
+        \item Remove to-dos (both completed and not)
+    \end{enumerate}
+    \item The software should allow printing of any calendar views, and a
+        printout of the current to-do list.
+    \item The software will be light on memory and processor time usage, as it
+        may be left to run passively in the background.
+    \item The user must be able to view the contents of the application
+        windows easily even as small windows, since the software may be kept
+        on the desktop permanently (as a digital to-do list).
+\end{enumerate}
 
 
 \boxref{6.2-feedback}
@@ -62,3 +80,10 @@ it to pop up. I encountered difficulties in finding a simple and clean
 cross-platform solution for desktop notifications, however, and decided against
 implementing it since my client Amartya didn't request it as an important
 feature.
+
+The monthly calendar view was an underdeveloped idea which I think could have
+some improvements to make it more useful. For example, there could be some
+built-in public holidays and days of importance (such as the beginning and end
+of BST). Also, it may be easier to understand if it were in the classic format
+where the weekdays are the columns, instead of starting every month at 1 on the
+left.

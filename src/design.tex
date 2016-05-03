@@ -41,8 +41,8 @@ implement so many of my own utility classes for the graphical parts. It also
 makes writing cross-platform software easier.
 
 
-\boxref{2.2-modular}
 \subsubsection{System modularity}
+\boxref{2.2-modular}
 
 I am approaching the design of the system modularly, i.e. as much of the system
 as possible will be \textit{pluggable}. Where required, classes and modules will
@@ -63,8 +63,8 @@ features for things which can easily be swapped out for more abstract classes
 later.
 
 
-\boxref{2.4-records}
 \subsection{Database records}
+\boxref{2.4-records}
 
 The database for my system will hold two types of records: \textbf{to-dos} and
 \textbf{appointments}. Each record has different fields. For each table, field
@@ -121,8 +121,8 @@ information, which will make it easier to visually search through appointments
 for certain events.
 
 
-\boxref{2.1-overall}
 \subsection{IPSO table}
+\boxref{2.1-overall}
 
 \addfigure
     {ipso}
@@ -130,8 +130,8 @@ for certain events.
     {fig:ipso}
 
 
-\boxref{2.5-validation}
 \subsection{Input validation}
+\boxref{2.5-validation}
 
 A SQLite database can store any string of characters -- however, if a
 user escapes their input in a certain way (on purpose or not), it could
@@ -156,8 +156,8 @@ is entering data for a new record those fields should be checked to make sure
 they are not empty.
 
 
-\boxref{2.6-database-design}
 \subsection{Database design}
+\boxref{2.6-database-design}
 
 Qt provides a multitude of 'safe' file paths to use for storing user data in,
 which (importantly) are guaranteed to work across multiple operating systems. My
@@ -168,8 +168,8 @@ The database is simple and holds two types of records: 'appointments' and
 more.)
 
 
-\boxref{2.7-sql}
 \subsection{Sample SQL queries}
+\boxref{2.7-sql}
 
 In my program, I will have a layer on abstraction on top of SQL, so GUI windows
 will not be making SQL queries. Instead they will call a database handler which
@@ -211,9 +211,24 @@ FROM appointments WHERE date <= 2457512;
 \end{minted}
 
 
+\subsection{Storage media}
+\boxref{2.8-storage}
 
-\boxref{2.9-data-algos}
+The program is intended to be installed to a user's hard drive. In today's age,
+hard drives are cheap and commonplace while also having lots of space.
+Furthermore, C++ programs usually compile down to small executables due to years
+of compiler optimisation, so even using the rather hefty Qt framework shouldn't
+make the output executable more than 10 MB.
+
+The data my program stores is solely textual and numeric, so space is again not
+a worry. As an approximation, using one byte for each character and numeric
+digit, one appointment might be 200 bytes. 1000 appointments would not even
+amount to 1 MB of space -- and this is without the compression that SQLite
+applies! It is safe to assume that storage space will not be an issue.
+
+
 \subsection{Data transformation algorithms}
+\boxref{2.9-data-algos}
 
 Dates and times are tricky to handle. If stored in string format (e.g.
 \texttt{2016-01-02 15:30}) it becomes overly complex to compare two records and
@@ -248,6 +263,106 @@ day_input = "2010-11-13"
 year, month, day = date_split(day_input)
 julian_day = (1461 * (year + 4800 + (month - 14)/12))/4 + (367 * (month - 2 - 12 * ((month - 14)/12)))/12 - (3 * ((year + 4900 + (month - 14)/12)/100))/4 + day - 32075
 \end{minted}
+
+
+\subsection{User interface designs \& rationale}
+\boxref{2.11-rationale}
+\boxref{2.12-input-design}
+\boxref{2.13-output-design}
+
+In general, my program needs to be straightforward and 'honest' i.e. a button
+should do whatever it would immediately seem to do based on its name and
+placement. This is important because though my main client is a highly-competent
+computer user, the program should be accessible for older generations who would
+like to move to a digital calendar solution and may not have much computer
+experience.
+
+My original design for the main window was a 'monolithic' approach: everything
+would be viewable from the main window, without having to open sub-windows or
+extra dialogs. I felt this would be the best way to allow the user to find what
+they need quickest.
+
+\addfigure
+    {ui-design-sheet-1}
+    {The first plan I came up with for the main window layout.}
+    {figure:ui-main-1}
+
+However after some deliberation and a conversation with my client Amartya, I
+decided to change to a simpler tabbed design. Most importantly, it allows the
+window to be much smaller yet still show all the information, which fulfills one
+of the criteria set in the analysis.
+
+\addfigure
+    {ui-design-sheet-2}
+    {The amended main window design, using a simpler tabbed approach.}
+    {figure:ui-main-2}
+
+For the searching feature, my chief concern was with clarity. So rather than
+having multiple options for different search types (e.g. 'exact match', 'match
+anywhere'), I will keep it simple and only give four input fields to the user by
+merging the title and description fields -- the input string for that field will
+be used to search both fields in each appointment record. I wasn't sure whether
+to combine the location with them too all into one field. My client mentioned he
+preferred having a separate location field, so I'm planning to use that.
+
+\addfigure
+    {ui-search-appts}
+    {The planned appointment search dialog.}
+    {figure:ui-search-appts}
+
+The new appointment dialog is similar in layout to the appointment search
+window, but has separate fields for the title and description, and the second
+calendar widget is a time selector instead.
+
+After searching, if any appointments were found, a dialog must pop up and show
+the matching appointments. One of the larger considerations I took when
+designing this window was the potential for there to be tens (or maybe hundreds)
+of appointments. Because of this, I made sure that the elements would still look
+good and lay themselves out correctly even with many appointments present by
+using a scroll bar.
+
+\addfigure
+    {ui-search-results}
+    {The planned appointment search results dialog.}
+    {figure:ui-search-results}
+
+Finally, the user should be able to view the appointments for the current month
+in a simplistic layout, like how physical calendars have a page for each month.
+
+\addfigure
+    {ui-month-view}
+    {The planned monthly calendar view window for appointments.}
+    {figure:ui-month-view}
+
+
+\subsection{Data security and integrity}
+\boxref{2.14-data-security}
+\boxref{2.15-system-security}
+
+My system is intended to be used on a (potentially shared) single desktop
+computer. It has no online or network features. The software uses a database
+file dependent on the user's account name, and keeps the file in their private
+application data folder (i.e. in the \texttt{/home/user} folder in Linux, and in
+the \verb|%APPDATA%| folder in Windows, which changes for different users). This
+means that anyone with access to a user's operating system account can access
+and modify their calendar.
+
+Because I am not using a central database file but instead a separate one for
+each user, my security troubles are lessened. I can use the operating system's
+inbuilt security features rather than password locking different calendars.
+Therefore users should have strong passwords to prevent other unauthorised users
+from accessing their calendar.
+
+I am using SQLite in a simple manner, meaning every statement I execute is
+immediately applied to the database file. This can be slower than batch
+execution of statements, but it means data corruption is highly unlikely, since
+I/O operations happen in a very short amount of time. SQLite is respected and
+well-known for being an incredibly reliable database.
+
+
+
+
+
 
 
 \subsection{TODO sort}
