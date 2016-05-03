@@ -11,6 +11,28 @@
 \addmylib{custom/boxref}
 %% }}}
 
+\newcommand{\fullimg}[1]{\includegraphics[width=\linewidth]{#1}}
+\newcommand{\smallimg}[1]{\includegraphics[width=0.6\linewidth]{#1}}
+\newcommand{\halfimg}[1]{\includegraphics[width=0.5\linewidth]{#1}}
+
+\newcommand{\addfigure}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{#1}
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+}
+
+\newcommand{\addsmallfigure}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{#1}
+        \caption{#2}
+        \label{#3}
+    \end{figure}
+}
+
 \begin{document}
 
 %% Document & author info {{{

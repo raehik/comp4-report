@@ -1,15 +1,53 @@
 % vim: spell ft=tex
 \section{Appraisal}
-\subsection{Later extensions}
+\boxref{6.1-objectives}
+\subsection{Evaluation of objectives}
 
-\todo{Simple mockup to show what I mean? Just add tiny arrows on the left or
-right for each to-do.}
+
+
+
+\boxref{6.2-feedback}
+\boxref{6.3-feedback}
+\subsection{Client feedback}
+
+I talked with Amartya about the software, gave him the manual and explained how
+to use the program. From this session I received some feedback from him.
+
+``I found the software very easy to understand and move around in. Since I use
+my laptop so much it's really handy to be able to add a note quickly and not
+worry about losing a post-it note or piece of paper. The program loads up and
+shuts down very quickly, and the keyboard shortcuts detailed in the manual are
+quite helpful since it means I only need to divert my attention for a few
+seconds. Because I'm a developer I appreciate that HTML is rendered as the raw
+characters rather than butchered formatting! On appointments, I'm pleased with
+how you can store multiple different pieces of information separately so that
+it's obvious how best to make an appointment and so I can easily see the
+important bits.
+
+I don't think there needs to be two buttons each for creating to-dos and
+appointments, since it seems redundant: I just use the bigger button at the
+bottom of each tab. The search results window gives clear information
+about the appointments found, but it would be better if I could print them out
+like I can with other windows. Also, an edit button for each appointment would
+make amending appointments in the future much faster.''
+
+TODO -- basically check against objectives again
+
+
+\boxref{6.4-extensions}
+\subsection{Later extensions}
 
 Something possible in real life that my software did not emulate is the sorting
 and ordering of to-dos. If a user were able to decide on the order of the to-dos
 themselves (without removing and re-adding each individual one), it could make
 it easier for them to find with a glance what they're looking for -- e.g. by
-moving the 'now' items to the top, and the 'pending' further down.
+moving the 'now' items to the top, and the 'pending' further down. A mock-up
+could look similar to this:
+
+\addsmallfigure
+    {extension-arrow}
+    {An example mock-up of using more buttons to reorder to-dos.}
+    {fig:extension-arrow}
 
 As an extension to this idea, being able to group to-dos together and only show
 certain groups could be helpful. However, although these ideas make viewing the
@@ -18,6 +56,9 @@ highest priority tasks quicker and easier, it could seem like unnecessary
 Already each to-do and appointment has two and three buttons respectively linked
 to each, so I would be unsure about adding more buttons.
 
-One feature I wanted to add was notifications for appointments. Users could
-select an appointment and choose to make a notification for it to pop up at a
-specified date and time,
+One feature I wanted to add was notifications for appointments. A user would
+select an appointment and specify a date and time for a notification about
+it to pop up. I encountered difficulties in finding a simple and clean
+cross-platform solution for desktop notifications, however, and decided against
+implementing it since my client Amartya didn't request it as an important
+feature.
