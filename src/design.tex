@@ -187,7 +187,27 @@ need to run EXEC statements.
 
 An example INSERT statement for an appointment would be:
 
-\begin{minted}[breaklines,xleftmargin=15pt]{text}
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+INSERT INTO appointments(id,title,date,description,time,location)
+values(?,?,?,?,?,?);
+\end{minted}
+
+Each parameter (indicated by a single question mark) would be bound to a
+variable, which prevents the user from escaping the field in a way to end the
+query early or otherwise perform unwanted actions. The readied statement could look like this:
+
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+INSERT INTO appointments(id,title,date,description,time,location)
+values(1,"Go to the gym",2457501,"",58800,"Local gym");
+\end{minted}
+
+In order to SELECT a range of appointments matching certain criteria, I need to
+use a WHERE clause. A query to find all appointments with a date before 3rd
+March 2016 (Julian day 2457512) would look like so:
+
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+SELECT id,title,date,description,time,location
+FROM appointments WHERE date <= 2457512;
 \end{minted}
 
 
