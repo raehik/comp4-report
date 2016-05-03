@@ -14,14 +14,41 @@
         \item Tick off to-dos as they are completed
         \item Remove to-dos (both completed and not)
     \end{enumerate}
-    \item The software should allow printing of any calendar views, and a
-        printout of the current to-do list.
-    \item The software will be light on memory and processor time usage, as it
-        may be left to run passively in the background.
-    \item The user must be able to view the contents of the application
-        windows easily even as small windows, since the software may be kept
-        on the desktop permanently (as a digital to-do list).
 \end{enumerate}
+
+All of these objectives have been met by my software. The monthly view is
+limited as it only allows the user to view the current month.
+
+\begin{quotation}
+2. The software must be light on memory and processor time usage, as it may be
+left to run passively in the background.
+\end{quotation}
+
+On my computer, running the program has no discernible impact on system
+operation. Leaving it running for a long time (6 hours) does not change the
+resources it uses.
+
+\begin{quotation}
+3. The user should be able to view the contents of the application windows
+easily even as small windows, since the software may be kept on the desktop
+permanently (as a digital to-do list).
+\end{quotation}
+
+In general, windows and widgets behave well even when small (600x300 for
+appointments, 300x200 for to-dos). Some widgets fail to render well when made
+smaller than 200x200. The appointment tab especially needs to have a large
+enough height to show the full calendar without 'squishing' of elements.
+However, these situations would only happen in cases where the window is made
+very small.
+
+\begin{quotation}
+4. The software should allow printing of any calendar views, and a printout of
+the current to-do list.
+\end{quotation}
+
+When printing the to-do list, only the pending (incomplete) to-dos are put on
+the list, as intended. The two calendar views, daily and monthly, can both be
+printed out: however they aren't formatted specially for printing.
 
 
 \boxref{6.2-feedback}
@@ -40,7 +67,8 @@ seconds. Because I'm a developer I appreciate that HTML is rendered as the raw
 characters rather than butchered formatting! On appointments, I'm pleased with
 how you can store multiple different pieces of information separately so that
 it's obvious how best to make an appointment and so I can easily see the
-important bits.
+important bits. The printouts for appointments are not ideal but I usually only
+print my to-dos for the day, so it doesn't affect me too much.
 
 I don't think there needs to be two buttons each for creating to-dos and
 appointments, since it seems redundant: I just use the bigger button at the
