@@ -124,7 +124,10 @@ for certain events.
 \boxref{2.1-overall}
 \subsection{IPSO table}
 
-\todo{Use Excel}
+\addfigure
+    {ipso}
+    {An IPSO table for the planned software.}
+    {fig:ipso}
 
 
 \boxref{2.5-validation}
@@ -145,8 +148,8 @@ can input any string and it would be valid for a new record.
 The other input validation I need to do is to ensure that all strings are
 displayed correctly. Some of Qt's classes will automatically display strings as
 formatted HTML, meaning users can create unexpected effects and potential layout
-problems if they insert \texttt{<h1>} or other tags. It is possible to disable
-this so that strings are displayed exactly as they were entered.
+problems if they insert \texttt{<h1>} or other such tags. It is possible to
+disable this so that strings are displayed exactly as they were entered.
 
 To-do and appointment records both have some required fields, so when the user
 is entering data for a new record those fields should be checked to make sure
@@ -156,7 +159,37 @@ they are not empty.
 \boxref{2.6-database-design}
 \subsection{Database design}
 
-TODO
+Qt provides a multitude of 'safe' file paths to use for storing user data in,
+which (importantly) are guaranteed to work across multiple operating systems. My
+program only uses one file, which is the database file.
+
+The database is simple and holds two types of records: 'appointments' and
+'to-dos' in their respective databases. (See the Database Records section for
+more.)
+
+
+\boxref{2.7-sql}
+\subsection{Sample SQL queries}
+
+In my program, I will have a layer on abstraction on top of SQL, so GUI windows
+will not be making SQL queries. Instead they will call a database handler which
+in turn calls its specific database helper, which will translate the function
+call and parameters into a query for its database, execute it, then return a
+result or a code indicating success or failure. I only plan to implement one
+database helper for SQLite, but this setup allows better separation of concerns
+between GUI elements and the database.
+
+My SQLite database helper will be making many different parameterised queries.
+Appointment and to-do records must be INSERTed, UPDATEd, SELECTed and DELETEd.
+The SELECT statements will be especially varied, since I'm using two different
+views for appointments. Furthermore, to create tables for a new database file, I
+need to run EXEC statements.
+
+An example INSERT statement for an appointment would be:
+
+\begin{minted}[breaklines,xleftmargin=15pt]{text}
+\end{minted}
+
 
 
 \boxref{2.9-data-algos}
@@ -167,14 +200,34 @@ Dates and times are tricky to handle. If stored in string format (e.g.
 find which is before the other. Thus I need to represent arbitrary dates and
 times as numbers.
 
+
+\subsubsection{Time}
+
 This is easy for a time: storing the number of minutes (or seconds) since 00:00
 would suffice, and make comparisons easy and also less data would be stored than
-if a string was used. For a specific day, a common count used is the Julian day,
-which is an integer indicating the number of days since January 1, 4713 BC (the
-start of the Julian Period). This can represent every and any day a user would
-need, and again uses fewer bytes than a string representation.
+if a string was used. An example manual implementation using seconds
+since midnight follows:
+
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+time_input = "16:20:24"
+hours, minutes, seconds = time_split(time_input)
+return seconds + (minutes * 60) + (hours * 60 * 60) // = 58824
+\end{minted}
 
 
+\subsubsection{Date}
+
+For a specific day, a common count used is the Julian day, which is an integer
+indicating the number of days since January 1, 4713 BC (the start of the Julian
+Period). This can represent every and any day a user would need, and again uses
+fewer bytes than a string representation. All the following divisions are
+\textbf{floored operations} \cite{wiki-julian}:
+
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+day_input = "2010-11-13"
+year, month, day = date_split(day_input)
+julian_day = (1461 * (year + 4800 + (month - 14)/12))/4 + (367 * (month - 2 - 12 * ((month - 14)/12)))/12 - (3 * ((year + 4900 + (month - 14)/12)/100))/4 + day - 32075
+\end{minted}
 
 
 \subsection{TODO sort}
