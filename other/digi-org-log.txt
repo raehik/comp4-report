@@ -1,0 +1,19 @@
+TEST,SQL00,'open new db file'
+TEST,SQL01,'open existing db file'
+TEST,SQL02,'check if a fake table exists'
+TEST,SQL03,'pass empty string to exec_sql()'
+TEST,SQL10,'select from non-existent table'
+no such table: fake_table
+TEST,SQL11,'select from table with wrong columns'
+no such column: fake_col1
+TEST,SQL13,'select from empty table'
+TEST,SQL20,'insert into table without id'
+TEST,SQL21,'insert >1000 rows in one query'
+Number of rows to be added: 1000
+trying to insert too many rows (1000 or more)
+TEST,SQL22,'insert nothing into table'
+no rows to insert passed (empty array)
+TEST,SQL23,'SQL injection attack'
+table table1 contents:
+ayy lmao
+Robert'); drop table table1;
