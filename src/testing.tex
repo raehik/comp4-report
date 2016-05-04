@@ -1,0 +1,90 @@
+% vim: spell ft=tex
+\section{Testing}
+\subsection{Testing plan}
+\boxref{3.1-design}
+
+I have some simple unit tests for the SQLiteHelper class to ensure that it
+behaves correctly even when given potentially erroneous data. I will tabulate
+the results of the unit tests and provide a screenshot of the output logs from
+the test run.
+
+For the GUI part of the software, I will focus on testing and validating user
+input.
+
+
+\subsection{Tests}
+\subsubsection{Database}
+
+These tests have been adapted from partial unit tests which can be found in
+\texttt{testsql.cpp} and \texttt{testgui.cpp}.
+
+\begin{table}[H]
+\centering
+{ \small
+\begin{tabularx}{\linewidth}{|p{0.06\linewidth}|p{0.14\linewidth}|p{0.1\linewidth}|p{0.12\linewidth}|p{0.2\linewidth}|X|} \hline
+        \textbf{Test ID} &
+        \textbf{Description} &
+        \textbf{Test type} &
+        \textbf{Data} &
+        \textbf{Expected result} &
+        \textbf{Actual result} \\ \hline
+
+    SQL00
+      & Open new database file
+      & Other
+      & test-sql.db
+      & successful
+      & \R
+
+    SQL01
+      & Open existing database file
+      & Other
+      & test-sql.db
+      & successful
+      & \R
+
+    SQL02
+      & Check if a non-existent table exists
+      & Other
+      & fake\_table
+      & no such table
+      & \R
+
+    SQL03
+      & Pass empty string to \texttt{exec\_sql()}
+      & Other
+      & ``'' (empty string)
+      & take no action
+      & \R
+
+    SQL10
+      & Select from non-existent table
+      & Other
+      & fake\_table
+      & no such table
+      & \R
+
+    SQL11
+      & Select from existing table with incorrect columns
+      & Other
+      & fake\_col1
+      & no such column
+      & \R
+
+    SQL13
+      & Select all from empty table
+      & Other
+      & fake\_col1
+      & no such column
+      & \R
+
+\end{tabularx}
+}
+\caption{Database unit \& other tests}
+\label{tbl:test-db}
+\end{table}
+
+\addfigure
+    {test/sql-test-log}
+    {The output log after running the SQL unit tests.}
+    {figure:sql-test-log}
