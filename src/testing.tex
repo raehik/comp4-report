@@ -9,11 +9,11 @@ the results of the unit tests and provide a screenshot of the output logs from
 the test run.
 
 For the GUI part of the software, I will focus on testing and validating user
-input.
+input, and making sure that the different elements of the interface work as
+expected.
 
 
-\subsection{Tests}
-\subsubsection{Database}
+\subsection{Database tests}
 
 These tests have been adapted from partial unit tests which can be found in
 \texttt{testsql.cpp} and \texttt{testgui.cpp}. The test table name is
@@ -32,90 +32,90 @@ These tests have been adapted from partial unit tests which can be found in
 
     SQL00
       & Open new database file
-      & Unit
+      & Valid
       & test-sql.db
-      & successful
-      &
+      & success
+      & success: \texttt{opened database test-sql.db successfully}
       \R
 
     SQL01
       & Open existing database file
-      & Unit
+      & Valid
       & test-sql.db
-      & successful
-      &
+      & success
+      & success: \texttt{opened database test-sql.db successfully}
       \R
 
     SQL02
       & Check if a non-existent table exists
-      & Unit
+      & Valid
       & fake\_table
-      & no such table
-      &
+      & success: no such table
+      & success: \texttt{table fake\_table does not exist}
       \R
 
     SQL03
       & Pass empty string to \texttt{exec\_sql()}
-      & Unit
+      & Boundary (should not normally occur)
       & ``'' (empty string)
-      & take no action
-      &
+      & success, take no action
+      & success: \texttt{exec statement is empty, doing nothing}
       \R
 
     SQL10
       & Select from non-existent table
-      & Unit
+      & Erroneous
       & fake\_table
-      & no such table
-      &
+      & failure: no such table
+      & failure: \texttt{no such table: fake\_table}
       \R
 
     SQL11
       & Select from existing table with incorrect columns
-      & Unit
+      & Erroneous
       & fake\_col1
-      & no such column
-      &
+      & failure: no such column
+      & failure: \texttt{no such column: fake\_col1}
       \R
 
     SQL13
       & Select all from empty table
-      & Unit
+      & Valid
       & fake\_col1
-      & no such column
-      &
+      & success, empty record array returned
+      & success, empty record array returned
       \R
 
     SQL20
       & Insert into table without ID
-      & Unit
+      & Valid
       & \verb|{"test"}| into a table holding \verb|{id,field}|
       & success
-      &
+      & success
       \R
 
     SQL21
       & Insert 1000 rows in one query
-      & Unit
+      & Erroneous
       & 1000 identical records of \verb|{"test"}|
       & failure
-      &
+      & failure -- \texttt{trying to insert too many rows (1000 or more)}
       \R
 
     SQL22
       & Insert nothing
-      & Unit
+      & Erroneous
       & empty record
       & failure -- no records to insert
-      &
+      & failure: \texttt{no rows to insert passed (empty array)}
       \R
 
     SQL23
       & SQL injection attack
-      & Unit
+      & Extreme (could potentially be entered by user)
       & \texttt{|Robert '); drop table table1}
       & does \textbf{not} drop table, adds the record
-      &
+      & record successfully added, table intact
       \R
 
 \end{tabularx}
@@ -128,3 +128,205 @@ These tests have been adapted from partial unit tests which can be found in
     {test/sql-test-log}
     {The output log after running the SQL unit tests.}
     {figure:sql-test-log}
+
+
+\clearpage
+\subsection{User interface tests}
+
+\begin{table}[H]
+\centering
+
+{ \small
+\begin{tabularx}{\linewidth}{|p{0.06\linewidth}|p{0.14\linewidth}|p{0.1\linewidth}|p{0.12\linewidth}|p{0.2\linewidth}|X|} \hline
+        \textbf{Test ID} &
+        \textbf{Description} &
+        \textbf{} &
+        \textbf{Data} &
+        \textbf{Expected result} &
+        \textbf{Actual result} \\ \hline
+
+    GUI01
+      & Search appts. with huge range
+      & Extreme
+      & Year 999 BC and year 7000 AD
+      & successful
+      & successful
+      \R
+
+    GUI02
+      & Search appts. with incorrect case
+      & Valid
+      & \texttt{LiBrArY}
+      & successful (find appointment regardless)
+      & successful
+      \R
+
+    GUI03
+      & Search appts. with incorrect case
+      & Erroneous
+      & After `5 May 2016' and before `4 May 2016'
+      & failure with error
+      & failure with error
+      \R
+
+    GUI04
+      & Search appts. on a single day
+      & Valid
+      & After `3 May 2016' and before `3 May 2016'
+      & success
+      & success
+      \R
+
+    GUI05
+      & Search appts. expecting no results
+      & Valid
+      & see image
+      & success, give error dialog
+      & success, give error dialog
+      \R
+
+    GUI11
+      & Open monthly appt. view
+      & Other
+      & -
+      & success, open new window
+      & success, open new window
+      \R
+
+    GUI12
+      & Print monthly appt. view
+      & Other
+      & -
+      & success, open new window
+      & success, open new window
+      \R
+
+    GUI21
+      & Tick/complete a to-do
+      & Other
+      & -
+      & success, cross out and move to bottom
+      & success, cross out and move to bottom
+      \R
+
+    GUI22
+      & Edit a to-do
+      & Other
+      & -
+      & success, change selected to-do
+      & success, change selected to-do
+      \R
+
+    GUI23
+      & Delete a to-do
+      & Other
+      & -
+      & success, remove to-do from list
+      & success, remove to-do from list
+      \R
+
+    GUI24
+      & Print to-do list
+      & Other
+      & -
+      & success, only current ones
+      & success, only current ones
+      \R
+
+    GUI25
+      & Add a to-do
+      & Other
+      & -
+      & success, add to correct part of list
+      & success, add to correct part of list
+      \R
+
+    GUI31
+      & Add an appointment
+      & Other
+      & -
+      & success, add and display immediately
+      & success, add and display immediately
+      \R
+
+    GUI32
+      & Change days on the daily appointment view
+      & Other
+      & -
+      & success, update appointment display
+      & success, update appointment display
+      \R
+
+    GUI33
+      & Edit an existing appointment
+      & Other
+      & -
+      & success, update and display with changes
+      & success, update and display with changes
+      \R
+
+    GUI34
+      & Delete an appointment
+      & Other
+      & -
+      & success, appointment should not be displayed
+      & success, appointment should not be displayed
+      \R
+
+    GUI34
+      & Print the daily appointment view widget
+      & Other
+      & -
+      & success, proper PDF or physical printout created
+      & success, PDF created (would look identical when printed)
+      \R
+
+\end{tabularx}
+}
+\caption{User interface tests.}
+\label{tbl:test-ui}
+\end{table}
+
+
+\subsubsection{User interface test result images}
+
+Note: My computer is configured to not show exit/maximise/minimise buttons, but
+on a regular computer they will be present.
+
+
+\newcommand{\testimg}[2]{
+    \begin{figure}
+        \caption{\textbf{#1}}
+        { \centering
+        \includegraphics[width=0.8\textwidth]{test/#2}
+        }
+    \end{figure}
+}
+
+\testimg{GUI01}{ui-search-limit}
+\testimg{GUI02}{ui-search-case}
+\testimg{GUI03}{ui-search-after-later}
+\testimg{GUI04}{ui-search-single}
+\testimg{GUI05}{ui-search-none}
+\testimg{GUI11}{ui-month}
+\testimg{GUI12}{ui-month-print-1}
+\testimg{GUI12}{ui-month-print-2}
+\testimg{GUI21}{ui-todo-tick-1}
+\testimg{GUI21}{ui-todo-tick-2}
+\testimg{GUI22}{ui-todo-edit-1}
+\testimg{GUI22}{ui-todo-edit-2}
+\testimg{GUI23}{ui-todo-delete-1}
+\testimg{GUI23}{ui-todo-delete-2}
+\testimg{GUI24}{ui-todo-print-1}
+\testimg{GUI24}{ui-todo-print-2}
+\testimg{GUI25}{ui-todo-add-1}
+\testimg{GUI25}{ui-todo-add-2}
+\testimg{GUI31}{ui-appt-add-1}
+\testimg{GUI31}{ui-appt-add-2}
+\testimg{GUI32}{ui-appt-move-1}
+\testimg{GUI32}{ui-appt-move-2}
+\testimg{GUI33}{ui-appt-edit-1}
+\testimg{GUI33}{ui-appt-edit-2}
+\testimg{GUI34}{ui-appt-delete-1}
+\testimg{GUI34}{ui-appt-delete-2}
+\testimg{GUI35}{ui-appt-print}
