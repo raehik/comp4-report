@@ -1,0 +1,74 @@
+% vim: spell ft=tex
+\section{System maintenance}
+\boxref{4.1-overview}
+\subsection{System overview}
+
+The system is formed of two main parts:
+
+\begin{itemize}
+    \item The non-GUI data handling classes
+    \item The GUI interface for taking input and producing output
+\end{itemize}
+
+An abstract view of a database query would go like this:
+
+\begin{itemize}
+    \item Data is collected from user using a GUI class
+    \item Relevant function call to DataHandler
+    \item Relevant function call to DBHelper (SQLiteHelper)
+    \item DBHelper translates abstract query to the database language (or
+        a series of steps) and updates the database or performs a search
+    \item If the function call was expected to return data, simple records are
+        returned to DataHandler
+    \item DataHandler changes the records into the format expected by the
+        original calling GUI class
+    \item Data is returned to the GUI class
+\end{itemize}
+
+Though the system is best fit for a database like SQLite, by creating another
+class which inherits from DBHelper you could create backends for storing data in
+specially formatted text files, MySQL, or even a bespoke binary format.
+
+
+\subsubsection{Database connections}
+
+My program uses a single connection to the database for all operations. Having
+multiple connections in SQLite can introduce concurrency problems and can
+reduce the reliability of data. To make it easy for windows to use the same
+database connection, every window that uses the database takes a \textbf{pointer
+to the DataHandler object}. The constructor declaration for GTodoListWidget
+looks like this:
+
+\begin{minted}[breaklines,xleftmargin=15pt]{cpp}
+GTodoListWidget(DataHandler *db, QWidget *parent = 0);
+\end{minted}
+
+Note the \texttt{DataHandler *db} parameter. This is a pointer to a DataHandler
+object. Using this, we can access the object's methods by dereferencing the
+pointer:
+
+\begin{minted}[breaklines,xleftmargin=15pt]{cpp}
+GTodoListWidget(DataHandler *db, QWidget *parent = 0);
+\end{minted}
+
+
+\subsection{Examples of algorithms}
+
+The main classes which handle data in my program are DataHandler and
+SQLiteHelper. DataHandler makes abstract data requests/function calls to
+SQLiteHelper and runs a small amount of SQL directly for complex functions. The
+appointment search window runs \verb|DataHandler::search_appts()|, which runs a
+SQLiteHelper function to generate a SQL query such as follows:
+
+\begin{minted}[breaklines,frame=lines,xleftmargin=15pt]{text}
+select id,title,date,description,time,location from appointments where title
+like '%%' and description like '%%' and date <= 2457536 and date >= 2457484
+and location like '%%'
+\end{minted}
+
+
+\subsection{Code listings \& function/variable lists}
+
+The full code listings for the program can be found as a separate document
+included with this report. A full list of public and private variables and
+methods can be found in the header file section of the code listings.
