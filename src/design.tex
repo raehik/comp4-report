@@ -41,7 +41,7 @@ implement so many of my own utility classes for the graphical parts. It also
 makes writing cross-platform software easier.
 
 
-\subsubsection{System modularity}
+\subsection{System modularity}
 \boxref{2.2-modular}
 
 I am approaching the design of the system modularly, i.e. as much of the system
@@ -54,7 +54,9 @@ calls, and what return types it expects. In this way, a handler for a different
 database could be written with minimal code duplication, which would be useful
 if I need/want to change database systems (e.g. to CSV). This design also has
 the useful implication of making exporting data into different formats easier (a
-potential feature to implement later).
+potential feature to implement later), or if I need to add a feature like
+caching (it could be done almost transparently, with little change to calling
+code).
 
 As much as possible, the data classes will not depend on specific features of my
 chosen GUI framework. Because I'm using Qt there will be some overlap to
@@ -63,7 +65,8 @@ features for things which can easily be swapped out for more abstract classes
 later.
 
 
-\subsection{Database records}
+\subsection{Design data dictionary}
+\boxref{2.3-ddd}
 \boxref{2.4-records}
 
 The database for my system will hold two types of records: \textbf{to-dos} and
@@ -82,7 +85,7 @@ following row is an example valid record.
             \textbf{Completed? (Boolean)} \\ \hline
         1 & Order The \TeX Book                   & false \R
         2 & Buy some milk                         & true  \R
-        3 & Check 'characters' allowed in a todo  & true  \R
+        3 & Check 'characters' allowed in a to-do & true  \R
     \end{tabulary}
     \caption{Example to-do records.}
     \label{tbl:todo-rec}
@@ -362,54 +365,10 @@ I/O operations happen in a very short amount of time. SQLite is respected and
 well-known for being an incredibly reliable database.
 
 
+\subsection{Test strategy}
 
-
-
-
-
-\subsection{TODO sort}
-
-\newcommand{\classitem}[1]{\item \textbf{#1}}
-
-\begin{itemize}
-    \classitem{DBHelper}: Interface for classes which interface with a specific
-    database system (e.g. SQLite, MySQL).
-    \classitem{SQLiteHelper}: DBHelper for manipulating a SQLite database
-    (inserting/selecting data, executing commands)and inserting/selecting data.
-    \classitem{DataHandler}: Handles retrieving data and updating the database.
-    Uses a class derived from DBHelper to interface with the actual database.
-    \classitem{PDFExporter}
-\end{itemize}
-
-\begin{itemize}
-    \classitem{GuiMainWindow}: The 'master' GUI window, the main one that the
-        user interacts with.
-    \classitem{DataEntrySubmitWindow}: Interface for simple dialog windows
-        which take user input and use it somehow (e.g. add to a database or make
-        a database search)
-    \classitem{CalendarViewWindow}: Interface for a calendar view in a separate
-        window. Should have an option to print the view.
-    \classitem{TodoWidget}: A to-do widget for the main window.
-    \classitem{RecentApptsWidget}: A recent appointments widget for the main
-    window.
-    \classitem{MonthViewWidget}:
-\end{itemize}
-
-
-\subsubsection{DataHandler}
-
-Reasoning for this is that it means I can:
-
-\begin{itemize}
-    \item Move between databases without changing unrelated code
-    \item Easily implement caching if it turns out to be required
-\end{itemize}
-
-Separating the generic 'data movement interface' from the specific database
-protocol used means that code which handles data does \textit{not} need to know
-about the database being used.
-
-\begin{itemize}
-    \item \verb+insert_appts(vector<Appointment>)+
-    \item \verb+select_appts(string title, string description)+
-\end{itemize}
+I will split my testing into two parts: testing for data-handling classes
+(testing that errors and invalid input are handled well), and GUI testing
+(ensuring that buttons work correctly, errors are displayed for invalid input).
+I will put emphasis on testing erroneous or dangerous input for record fields,
+since problems such as SQL injection are common in systems using SQL databases.

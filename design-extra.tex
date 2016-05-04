@@ -1,0 +1,17 @@
+\newcommand{\classitem}[1]{\item \textbf{#1}}
+
+\begin{itemize}
+    \classitem{DBHelper}: Interface for classes which interface with a specific
+    database system (e.g. SQLite, MySQL).
+    \classitem{SQLiteHelper}: DBHelper for manipulating a SQLite database
+    (inserting/selecting data, executing commands)and inserting/selecting data.
+    \classitem{DataHandler}: Handles retrieving data and updating the database.
+    Uses a class derived from DBHelper to interface with the actual database.
+\end{itemize}
+
+\begin{itemize}
+    \classitem{GMainWindow}: The 'master' GUI window, the main one that the
+        user interacts with.
+    \classitem{GTodoListWidget}: A to-do list widget to be placed on the main
+        window.
+\end{itemize}
