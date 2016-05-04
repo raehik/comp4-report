@@ -16,7 +16,8 @@ input.
 \subsubsection{Database}
 
 These tests have been adapted from partial unit tests which can be found in
-\texttt{testsql.cpp} and \texttt{testgui.cpp}.
+\texttt{testsql.cpp} and \texttt{testgui.cpp}. The test table name is
+\texttt{table1}.
 
 \begin{table}[H]
 \centering
@@ -31,56 +32,95 @@ These tests have been adapted from partial unit tests which can be found in
 
     SQL00
       & Open new database file
-      & Other
+      & Unit
       & test-sql.db
       & successful
-      & \R
+      &
+      \R
 
     SQL01
       & Open existing database file
-      & Other
+      & Unit
       & test-sql.db
       & successful
-      & \R
+      &
+      \R
 
     SQL02
       & Check if a non-existent table exists
-      & Other
+      & Unit
       & fake\_table
       & no such table
-      & \R
+      &
+      \R
 
     SQL03
       & Pass empty string to \texttt{exec\_sql()}
-      & Other
+      & Unit
       & ``'' (empty string)
       & take no action
-      & \R
+      &
+      \R
 
     SQL10
       & Select from non-existent table
-      & Other
+      & Unit
       & fake\_table
       & no such table
-      & \R
+      &
+      \R
 
     SQL11
       & Select from existing table with incorrect columns
-      & Other
+      & Unit
       & fake\_col1
       & no such column
-      & \R
+      &
+      \R
 
     SQL13
       & Select all from empty table
-      & Other
+      & Unit
       & fake\_col1
       & no such column
-      & \R
+      &
+      \R
+
+    SQL20
+      & Insert into table without ID
+      & Unit
+      & \verb|{"test"}| into a table holding \verb|{id,field}|
+      & success
+      &
+      \R
+
+    SQL21
+      & Insert 1000 rows in one query
+      & Unit
+      & 1000 identical records of \verb|{"test"}|
+      & failure
+      &
+      \R
+
+    SQL22
+      & Insert nothing
+      & Unit
+      & empty record
+      & failure -- no records to insert
+      &
+      \R
+
+    SQL23
+      & SQL injection attack
+      & Unit
+      & \texttt{|Robert '); drop table table1}
+      & does \textbf{not} drop table, adds the record
+      &
+      \R
 
 \end{tabularx}
 }
-\caption{Database unit \& other tests}
+\caption{Database unit tests.}
 \label{tbl:test-db}
 \end{table}
 
