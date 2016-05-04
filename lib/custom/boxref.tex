@@ -1,17 +1,22 @@
+% Disabled {{{
 % required for doing all this TOC 'list of' manipulation
-\usepackage{tocloft}
+%\usepackage{tocloft}
 
 % create a new list incl. counter
-\newlistof{boxrefcounter}{boxrefs}{List of report section reference pages}
+%\newlistof{boxrefcounter}{boxrefs}{List of report section reference pages}
 
 % replacement macro for \label to automatically add it to a list at the end
-\newcommand{\boxref}[1]{
-    % normal stuff
-    \phantomsection
-    \label{boxref:#1}
+%\newcommand{\boxref}[1]{
+%    % normal stuff
+%    \phantomsection
+%    \label{boxref:#1}
+%
+%    % and add to a list at the end
+%    \addcontentsline{boxrefs}{boxrefcounter}{#1}
+%}
 
-    % and add to a list at the end
-    \addcontentsline{boxrefs}{boxrefcounter}{#1}
-}
+%\AtEndDocument{\clearpage\listofboxrefcounter}
+% }}}
 
-\AtEndDocument{\clearpage\listofboxrefcounter}
+% disable for final -- also comment out AtEnd
+\newcommand{\boxref}[1]{}
