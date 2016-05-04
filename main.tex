@@ -8,7 +8,6 @@
 \addmylib{extra/tables}
 \addmylib{extra/headers-footers}
 \addmylib{extra/tikz}
-\addmylib{custom/boxref}
 %% }}}
 
 \newcommand{\fullimg}[1]{\includegraphics[width=\linewidth]{#1}}
@@ -32,6 +31,10 @@
         \label{#3}
     \end{figure}
 }
+
+\usepackage[nottoc,numbib]{tocbibind}
+
+\addmylib{custom/boxref}
 
 \begin{document}
 
